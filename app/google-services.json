@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "13342800788",
+    "project_id": "personalheathassistant-8b043",
+    "storage_bucket": "personalheathassistant-8b043.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:13342800788:android:c3f11419166c1365d96d81",
+        "android_client_info": {
+          "package_name": "com.example.pha"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "13342800788-63sbnrnskl19074e0jqdeece67b0cm04.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pha",
+            "certificate_hash": "02c468a483b92bc0d46d2d23ccaf74b7a86117e1"
+          }
+        },
+        {
+          "client_id": "13342800788-1h5odmo9rj9kdn7l89hiajndsrq9i616.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC--SDSCeNJq_h8-G1QiIOtC5XT8fqGtIo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "13342800788-1h5odmo9rj9kdn7l89hiajndsrq9i616.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
