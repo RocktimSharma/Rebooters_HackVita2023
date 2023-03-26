@@ -27,9 +27,9 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="10dp"
             android:gravity="center"
-            android:text="Welcome!"
+            android:text="Welcome"
             android:textSize="34sp" />
 
         <TextView
@@ -38,20 +38,25 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:layout_marginBottom="40dp"
-            android:text="to" />
+            android:layout_marginBottom="10dp"
+            android:text="to"
+            android:textSize="34sp" />
 
         <TextView
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/archivo_black"
             android:gravity="center"
-            android:text="PHA" />
+            android:text="PHA"
+            android:textSize="34sp" />
 
         <Button
             android:id="@+id/signin_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
             android:layout_marginBottom="20dp"
             android:background="@color/white"
             android:backgroundTint="@color/white"
