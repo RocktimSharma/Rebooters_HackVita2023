@@ -15,6 +15,15 @@ SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
+
+
+
+
+
+
+
+
+
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment1()).commit();
 
         //if user is signed in then execute the following codes
