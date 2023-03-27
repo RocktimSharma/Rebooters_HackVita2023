@@ -49,4 +49,13 @@
         <item name="android:statusBarColor">@color/pink_300</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Theme.PHA.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.PHA.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.PHA.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
