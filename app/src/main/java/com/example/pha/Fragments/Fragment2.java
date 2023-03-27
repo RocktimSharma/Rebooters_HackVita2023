@@ -129,6 +129,7 @@ public class Fragment2 extends Fragment {
             age_edTxt.requestFocus();
         } else {
             //done
+
         }
         return view;
     }
