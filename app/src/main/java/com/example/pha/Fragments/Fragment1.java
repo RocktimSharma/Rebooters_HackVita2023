@@ -2,6 +2,7 @@ package com.example.pha.Fragments;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.pha.R;
+import com.example.pha.UserProfile;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -82,10 +84,11 @@ public class Fragment1 extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        /*
-        // Set click listener for sign in button
-        Button googleSignInButton = findViewById(R.id.signin_btn);
 
+        // Set click listener for sign in button
+        //Button googleSignInButton = findViewById(R.id.signin_btn);
+
+        /*
         // Initialize Firebase Authentication
         mAuth = FirebaseAuth.getInstance();
 
