@@ -11,36 +11,36 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class
 SecondActivity extends AppCompatActivity {
-    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
-        // Initialize Firebase Authentication
-        mAuth = FirebaseAuth.getInstance();
-
-        // Check if user is already logged in
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-            // User is already logged in, do something
+        //get the current user
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            //User is Logged in
+            // Intent is used to switch from one activity to another.
             Intent i = new Intent(SecondActivity.this, HomeActivity.class);
             startActivity(i); // invoke the SecondActivity.
-            finish();
-        } else {
-            // User is not logged in, do something else
-            /*profile view test
-            Intent i = new Intent(SecondActivity.this, UserProfile.class);
-            startActivity(i); // invoke the SecondActivity.
-            finish(); */
+            finish(); // the current activity will get finished.
+        }else{
+            //No User is Logged in
+            //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment1()).commit();
             Intent i = new Intent(SecondActivity.this, LoginActivity.class);
             startActivity(i); // invoke the SecondActivity.
             finish();
-            //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment1()).commit();
+
         }
 
-        // getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment1()).commit();
+
+
+
+
+
+
+
 
         //if user is signed in then execute the following codes
 
@@ -49,6 +49,9 @@ SecondActivity extends AppCompatActivity {
         finish();*/
 
         //if user is not signed in the exucute the follow codes
+
+
+
 
     }
 }
