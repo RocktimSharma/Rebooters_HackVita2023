@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +18,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -26,6 +28,7 @@ public class RegisterActivity extends AppCompatActivity {
     private TextView logIn_txt;
     FirebaseAuth mFireBaseAuth;
     FirebaseDatabase mFirebaseDatabase;
+    DatabaseReference databaseReference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         mFireBaseAuth=FirebaseAuth.getInstance();
         mFirebaseDatabase=FirebaseDatabase.getInstance();
+        databaseReference = mFirebaseDatabase.getReference("UserInfo");
 
         register_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +65,7 @@ public class RegisterActivity extends AppCompatActivity {
                      phone_edTxt.setError("Set a password");
                      phone_edTxt.requestFocus();
                  }else if(!(email.isEmpty() && password.isEmpty())){
+                     Log.i("Test 1","Wokring 1");
                      mFireBaseAuth.createUserWithEmailAndPassword(email,password)
                              .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                                  @Override
@@ -68,16 +73,21 @@ public class RegisterActivity extends AppCompatActivity {
                                      if(task.isSuccessful()){
 
                                          UserRegistration userRegistration= new UserRegistration(name,ph);
-                                         String uid=task.getResult().getUser().getUid();
-                                         mFirebaseDatabase.getReference(uid).setValue(userRegistration)
-                                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
+
+                                         databaseReference
+                                                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(userRegistration).
+                                                 addOnCompleteListener(new OnCompleteListener<Void>() {
                                                      @Override
-                                                     public void onSuccess(Void unused) {
-                                                         Intent i = new Intent(RegisterActivity.this, HomeActivity.class);
-                                                         startActivity(i); // invoke the SecondActivity.
-                                                         finish(); // the current activity will get finished.
+                                                     public void onComplete(@NonNull Task<Void> task) {
+                                                         //    progressbar GONE
+
+                                                         Toast.makeText(RegisterActivity.this,"Registration Successful",Toast.LENGTH_LONG).show();
+                                                         Intent i = new Intent(RegisterActivity.this, AddHealthInfo.class);
+                                                         startActivity(i); // invoke the RegisterActivity.
+                                                         finish();
                                                      }
                                                  });
+
 
                                      }else{
                                          Toast.makeText(RegisterActivity.this,"Registration Failed",Toast.LENGTH_LONG).show();
