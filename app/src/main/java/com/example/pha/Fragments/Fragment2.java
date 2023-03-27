@@ -97,6 +97,7 @@ public class Fragment2 extends Fragment {
         String vac_yes = vac_yes_edTxt.getText().toString();
         String vac_no = vac_no_edTxt.getText().toString();
 
+        //check
         if(TextUtils.isEmpty(age)){
             age_edTxt.setError("Please fill the info");
             age_edTxt.requestFocus();
