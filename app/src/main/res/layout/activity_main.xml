@@ -16,15 +16,17 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:srcCompat="@drawable/logo" />
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@color/white"
+            android:padding="20dp"
+            app:srcCompat="@drawable/logo_transparent" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="More Fonts..."
+            android:fontFamily="sans-serif-condensed"
             android:gravity="center"
             android:text="PHA"
             android:textAllCaps="true"
@@ -37,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="70dp"
-            android:fontFamily="monospace"
+            android:fontFamily="sans-serif-condensed"
             android:gravity="center"
             android:text="Your Own Personal Health Assistant"
             android:textColor="#FFFFFF"
