@@ -1,5 +1,6 @@
 package com.example.pha;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,12 +9,23 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.pha.model.UserRegistration;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
     private EditText email_edTxt,password_edTxt,name_edTxt,phone_edTxt;
 
     private Button register_btn;
     private TextView logIn_txt;
+    FirebaseAuth mFireBaseAuth;
+    FirebaseDatabase mFirebaseDatabase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,11 +36,57 @@ public class RegisterActivity extends AppCompatActivity {
         email_edTxt=findViewById(R.id.registerA_email_edtxt);
         register_btn=findViewById(R.id.registerA_register_btn);
         logIn_txt=findViewById(R.id.registerA_login_txtVw);
+
+        mFireBaseAuth=FirebaseAuth.getInstance();
+        mFirebaseDatabase=FirebaseDatabase.getInstance();
+
         register_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                 String name=name_edTxt.getText().toString();
+                 String email=email_edTxt.getText().toString();
+                 String password=password_edTxt.getText().toString();
+                 String ph=phone_edTxt.getText().toString();
+                 if(name.isEmpty()){
+                     name_edTxt.setError("Please provide your name");
+                     name_edTxt.requestFocus();
+                 }else if(email.isEmpty()){
+                     email_edTxt.setError("Please provide an email");
+                     email_edTxt.requestFocus();
+                 }else if(password.isEmpty()){
+                     password_edTxt.setError("Set a password");
+                     password_edTxt.requestFocus();
+                 }
+                 else if(ph.isEmpty()){
+                     phone_edTxt.setError("Set a password");
+                     phone_edTxt.requestFocus();
+                 }else if(!(email.isEmpty() && password.isEmpty())){
+                     mFireBaseAuth.createUserWithEmailAndPassword(email,password)
+                             .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
+                                 @Override
+                                 public void onComplete(@NonNull Task<AuthResult> task) {
+                                     if(task.isSuccessful()){
 
-            }
+                                         UserRegistration userRegistration= new UserRegistration(name,ph);
+                                         String uid=task.getResult().getUser().getUid();
+                                         mFirebaseDatabase.getReference(uid).setValue(userRegistration)
+                                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                     @Override
+                                                     public void onSuccess(Void unused) {
+                                                         Intent i = new Intent(RegisterActivity.this, HomeActivity.class);
+                                                         startActivity(i); // invoke the SecondActivity.
+                                                         finish(); // the current activity will get finished.
+                                                     }
+                                                 });
+
+                                     }else{
+                                         Toast.makeText(RegisterActivity.this,"Registration Failed",Toast.LENGTH_LONG).show();
+                                     }
+                                 }
+                             });
+                 }
+
+                    }
         });
          logIn_txt.setOnClickListener(new View.OnClickListener() {
             @Override
