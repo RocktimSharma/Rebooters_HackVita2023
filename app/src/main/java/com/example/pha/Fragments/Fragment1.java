@@ -16,20 +16,14 @@ import android.widget.Toast;
 import com.example.pha.HomeActivity;
 import com.example.pha.R;
 import com.example.pha.UserProfile;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+
+
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GoogleAuthProvider;
+
 import com.google.rpc.context.AttributeContext;
 
 /**
@@ -50,13 +44,6 @@ public class Fragment1 extends Fragment {
 
 
 
-
-
-    //Declarations
-    private static final String TAG = "MainActivity";
-    private SignInButton signInButton;
-    GoogleSignInClient googleSignInClient;
-    FirebaseAuth firebaseAuth;
 
 
     public Fragment1() {
@@ -91,91 +78,16 @@ public class Fragment1 extends Fragment {
         }
 
 
-
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_1, container, false);
-
-        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(String.valueOf(R.string.web_api_key))
-                .requestEmail()
-                .build();
-
-        // Initialize sign in client
-        googleSignInClient = GoogleSignIn.getClient(getActivity(), googleSignInOptions);
+        View view = inflater.inflate(R.layout.fragment_1, container, false);
 
 
-        signInButton = view.findViewById(R.id.sign_in_button);
-        signInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.i("Test","Test 1");
-                Intent intent = googleSignInClient.getSignInIntent();
-                // Start activity for result
-                getActivity().startActivityForResult(intent, 100);
-            }
-        });
-
-
-return view;
+        return view;
 
     }
-
-    private void displayToast(String s) {
-        Toast.makeText(getActivity().getApplicationContext(), s, Toast.LENGTH_SHORT).show();
-    }
-
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        // Check condition
-        if (requestCode == 100) {
-            // When request code is equal to 100 initialize task
-            Task<GoogleSignInAccount> signInAccountTask = GoogleSignIn.getSignedInAccountFromIntent(data);
-            // check condition
-            if (signInAccountTask.isSuccessful()) {
-                // When google sign in successful initialize string
-                String s = "Google sign in successful";
-                // Display Toast
-                displayToast(s);
-                // Initialize sign in account
-
-                try {
-                    // Initialize sign in account
-                    GoogleSignInAccount googleSignInAccount = signInAccountTask.getResult(ApiException.class);
-                    // Check condition
-                    if (googleSignInAccount != null) {
-                        // When sign in account is not equal to null initialize auth credential
-                        AuthCredential authCredential = GoogleAuthProvider.getCredential(googleSignInAccount.getIdToken(), null);
-                        // Check credential
-                        firebaseAuth.signInWithCredential(authCredential).addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                // Check condition
-                                if (task.isSuccessful()) {
-                                    // When task is successful redirect to profile activity display Toast
-                                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment2()).commit();
-                                    displayToast("Firebase authentication successful");
-                                } else {
-                                    // When task is unsuccessful display Toast
-                                    displayToast("Authentication Failed :" + task.getException().getMessage());
-                                }
-                            }
-                        });
-                    }
-                } catch (ApiException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
-
-
 }
