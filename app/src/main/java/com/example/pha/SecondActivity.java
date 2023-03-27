@@ -32,7 +32,6 @@ SecondActivity extends AppCompatActivity {
           /*  Intent i = new Intent(SecondActivity.this, LoginActivity.class);
             startActivity(i); // invoke the SecondActivity.
             finish();*/
-
         }
 
 
