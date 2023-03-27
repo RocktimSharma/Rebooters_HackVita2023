@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.pha.Fragments.Fragment1;
+import com.example.pha.Fragments.Fragment3;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -27,10 +28,10 @@ SecondActivity extends AppCompatActivity {
             finish(); // the current activity will get finished.
         }else{
             //No User is Logged in
-            //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment1()).commit();
-            Intent i = new Intent(SecondActivity.this, LoginActivity.class);
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment3()).commit();
+          /*  Intent i = new Intent(SecondActivity.this, LoginActivity.class);
             startActivity(i); // invoke the SecondActivity.
-            finish();
+            finish();*/
 
         }
 
