@@ -34,7 +34,10 @@ SecondActivity extends AppCompatActivity {
             Intent i = new Intent(SecondActivity.this, UserProfile.class);
             startActivity(i); // invoke the SecondActivity.
             finish(); */
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment1()).commit();
+            Intent i = new Intent(SecondActivity.this, LoginActivity.class);
+            startActivity(i); // invoke the SecondActivity.
+            finish();
+            //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment1()).commit();
         }
 
         // getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment1()).commit();

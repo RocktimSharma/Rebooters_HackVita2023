@@ -14,7 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.pha.LoginActivity;
 import com.example.pha.R;
+import com.example.pha.SecondActivity;
 import com.example.pha.UserProfile;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -84,9 +86,8 @@ public class Fragment1 extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-
         // Set click listener for sign in button
-        //Button googleSignInButton = findViewById(R.id.signin_btn);
+        //Button googleSignInButton = findViewById(R.id.sign_in_btn);
 
         /*
         // Initialize Firebase Authentication
