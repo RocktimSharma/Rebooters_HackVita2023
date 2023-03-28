@@ -60,10 +60,10 @@ public class LoginActivity extends AppCompatActivity {
                 String email = email_edTxt.getText().toString();
                 String pwd = password_edTxt.getText().toString();
                 //Write sign in codes here
-                if (TextUtils.isEmpty(email)) {
+                if (email.isEmpty()) {
                     email_edTxt.setError("Email cannot be empty");
                     email_edTxt.requestFocus();
-                } else if (TextUtils.isEmpty(pwd)) {
+                } else if (pwd.isEmpty()) {
                     password_edTxt.setError("Password cannot be empty");
                     password_edTxt.requestFocus();
                 } else {
@@ -71,8 +71,8 @@ public class LoginActivity extends AppCompatActivity {
                        @Override
                         public void onComplete(@NonNull Task<AuthResult> task){
                            if (task.isSuccessful()){
-                               Toast.makeText(LoginActivity.this, "User Registered Successfully", Toast.LENGTH_SHORT).show();
-                               startActivity(new Intent(LoginActivity.this, UserProfile.class));
+                               Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                               startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                            } else {
                                Toast.makeText(LoginActivity.this, "Oh no" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                            }

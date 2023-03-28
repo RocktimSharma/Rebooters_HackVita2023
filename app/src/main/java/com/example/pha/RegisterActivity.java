@@ -1,5 +1,7 @@
 package com.example.pha;
 
+import static androidx.constraintlayout.widget.Constraints.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,8 +18,12 @@ import com.example.pha.model.UserRegistration;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -74,7 +80,38 @@ public class RegisterActivity extends AppCompatActivity {
 
                                          UserRegistration userRegistration= new UserRegistration(name,ph);
 
-                                         databaseReference
+
+                                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                                         // Code for showing progressDialog while uploading
+                                         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                                 .setDisplayName(name)
+                                                 .build();
+
+                                         user.updateProfile(profileUpdates)
+                                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                     @Override
+                                                     public void onComplete(@NonNull Task<Void> task) {
+                                                         if (task.isSuccessful()) {
+                                                             Log.d(TAG, "User profile updated.");
+                                                             Toast.makeText(RegisterActivity.this,"Name successfully updated",Toast.LENGTH_LONG).show();
+
+                                                         }
+                                                     }
+                                                 });
+                                         AuthCredential credential = EmailAuthProvider.getCredential(email, password);
+
+                                         FirebaseAuth auth = FirebaseAuth.getInstance();
+
+
+
+
+
+
+
+
+
+                                       databaseReference
                                                  .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(userRegistration).
                                                  addOnCompleteListener(new OnCompleteListener<Void>() {
                                                      @Override
