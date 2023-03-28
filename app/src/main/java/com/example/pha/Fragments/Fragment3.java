@@ -182,7 +182,7 @@ public class Fragment3 extends Fragment {
 
                             // Code for showing progressDialog while uploading
                             UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                                    .setPhotoUri(Uri.parse("https://www.facebook.com/photo/?fbid=405485793408933&set=a.101457440478438"))
+                                    .setPhotoUri(selectedImageUri)
                                     .build();
 
                             user.updateProfile(profileUpdates)
