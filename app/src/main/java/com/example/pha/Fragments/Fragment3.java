@@ -15,9 +15,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import com.example.pha.AddHealthInfo;
+import com.example.pha.HomeActivity;
+import com.example.pha.LoginActivity;
 import com.example.pha.R;
+import com.example.pha.SecondActivity;
 
 import java.io.IOException;
 
@@ -39,6 +44,7 @@ public class Fragment3 extends Fragment {
 
     private ImageView dp_imVw;
     private Button done_btn;
+    private ImageButton back_imBtn;
     int SELECT_PICTURE = 200;
     public Fragment3() {
         // Required empty public constructor
@@ -78,10 +84,30 @@ public class Fragment3 extends Fragment {
         View view= inflater.inflate(R.layout.fragment_3, container, false);
         dp_imVw=view.findViewById(R.id.frag3_dp_imgVw);
         done_btn=view.findViewById(R.id.frag3_done_btn);
-        done_btn.setOnClickListener(new View.OnClickListener() {
+        back_imBtn=view.findViewById(R.id.frag3_back_imBtn);
+        dp_imVw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
             imageChooser();
+            }
+        });
+
+        done_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                ((AddHealthInfo)getActivity()).getDataFromFragments();
+
+                Intent i = new Intent(getActivity(), HomeActivity.class);
+                startActivity(i); // invoke the SecondActivity.
+                getActivity().finish();
+            }
+        });
+
+        back_imBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((AddHealthInfo)getActivity()).replaceFragments(2);
             }
         });
 

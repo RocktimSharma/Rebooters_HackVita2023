@@ -29,7 +29,7 @@ SecondActivity extends AppCompatActivity {
         }else{
             //No User is Logged in
           //  getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment3()).commit();
-            Intent i = new Intent(SecondActivity.this, LoginActivity.class);
+            Intent i = new Intent(SecondActivity.this, HomeActivity.class);
             startActivity(i); // invoke the SecondActivity.
             finish();
         }

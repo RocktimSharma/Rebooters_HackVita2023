@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.pha.AddHealthInfo;
 import com.example.pha.HomeActivity;
 import com.example.pha.R;
 import com.example.pha.UserProfile;
@@ -92,7 +93,8 @@ public class Fragment1 extends Fragment {
         next_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.add_health_info_fmLy, new Fragment2()).commit();
+                ((AddHealthInfo)getActivity()).replaceFragments(2);
+
             }
         });
 

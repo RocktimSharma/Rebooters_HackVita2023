@@ -8,10 +8,13 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.example.pha.AddHealthInfo;
 import com.example.pha.R;
 
 import org.jetbrains.annotations.NotNull;
@@ -34,7 +37,8 @@ public class Fragment2 extends Fragment {
 
     private EditText age_edTxt, height_ft_edTxt, height_in_edTxt, weight_edTxt;
     private RadioButton bp_high_edTxt, bp_low_edTxt, sgr_yes_edTxt, sgr_no_edTxt, vac_yes_edTxt, vac_no_edTxt;
-
+    private ImageButton back_imBtn;
+    private Button next_Btn;
     public Fragment2() {
         // Required empty public constructor
     }
@@ -64,6 +68,7 @@ public class Fragment2 extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        setRetainInstance(true);
     }
 
     @Override
@@ -71,7 +76,7 @@ public class Fragment2 extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_2, container, false);
-        age_edTxt = view.findViewById(R.id.frag2_age_edTxt);
+      /*  age_edTxt = view.findViewById(R.id.frag2_age_edTxt);
         height_ft_edTxt = view.findViewById(R.id.frag2_height_ft_edTxt);
         height_in_edTxt = view.findViewById(R.id.frag2_height_inc_edTxt);
         weight_edTxt = view.findViewById(R.id.frag2_weight_edTxt);
@@ -80,7 +85,25 @@ public class Fragment2 extends Fragment {
         sgr_yes_edTxt = view.findViewById(R.id.frag2_sgr_yes_radio);
         sgr_no_edTxt = view.findViewById(R.id.frag2_sgr_no_radio);
         vac_yes_edTxt = view.findViewById(R.id.frag2_vac_yes_radio);
-        vac_no_edTxt = view.findViewById(R.id.frag2_vac_no_radio);
+        vac_no_edTxt = view.findViewById(R.id.frag2_vac_no_radio);*/
+
+        next_Btn=view.findViewById(R.id.frag2_next_btn);
+        back_imBtn=view.findViewById(R.id.frag2_back_imBtn);
+
+        next_Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((AddHealthInfo)getActivity()).replaceFragments(3);
+            }
+        });
+
+        back_imBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((AddHealthInfo)getActivity()).replaceFragments(1);
+            }
+        });
+/*
 
         //int age = Integer.parseInt(age_edTxt.getText().toString());
         //int height_in = Integer.parseInt(height_in_edTxt.getText().toString());
@@ -131,7 +154,7 @@ public class Fragment2 extends Fragment {
         } else {
             //done
 
-        }
+        }*/
         return view;
     }
 }
