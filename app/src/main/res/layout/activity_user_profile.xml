@@ -150,7 +150,7 @@
     </RelativeLayout>
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/user_profile_img"
+        android:id="@+id/frag3_dp_imgVw"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_centerHorizontal="true"
@@ -171,7 +171,7 @@
         android:layout_marginTop="8dp"
         android:text="Gaurav Gogoi"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_profile_img" />
+        app:layout_constraintTop_toBottomOf="@+id/frag3_dp_imgVw" />
 
     <LinearLayout
         android:layout_width="409dp"

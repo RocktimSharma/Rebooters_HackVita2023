@@ -33,7 +33,6 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-condensed"
                 android:text="Let us know your"
-
                 android:textColor="@color/black"
                 android:textSize="34sp"
                 android:textStyle="bold" />
@@ -44,6 +43,7 @@
                 android:layout_below="@id/textView22"
 
 
+                android:layout_marginBottom="20dp"
                 android:orientation="vertical"
                 android:padding="10dp">
 
@@ -199,7 +199,7 @@
                         android:inputType="none" />
                 </com.google.android.material.textfield.TextInputLayout>-->
                 <Spinner
-                    android:id="@+id/spinner_languages"
+                    android:id="@+id/spinner_blood"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="338dp"
@@ -219,28 +219,32 @@
                     android:textStyle="bold" />
 
                 <RadioGroup
+                    android:id="@+id/blood_p_grp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/frag2_bp_low_radio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:text="Low" />
 
-                        <RadioButton
-                            android:id="@+id/frag2_bp_low_radio"
-                            android:layout_width="174dp"
-                            android:layout_height="40dp"
-                            android:text="Low" />
+                    <RadioButton
+                        android:id="@+id/frag2_bp_heigh_radio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginBottom="16dp"
+                        android:text="High" />
 
-                        <RadioButton
-                            android:id="@+id/frag2_bp_heigh_radio"
-                            android:layout_width="174dp"
-                            android:layout_height="40dp"
-                            android:layout_marginBottom="16dp"
-                            android:text="High" />
-                    </LinearLayout>
+                    <RadioButton
+                        android:id="@+id/frag2_bp_normal_radio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:text="normal" />
 
                 </RadioGroup>
 
@@ -253,31 +257,33 @@
                     android:textStyle="bold" />
 
                 <RadioGroup
+                    android:id="@+id/sugar_grp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/frag2_sgr_yes_radio"
+                        android:layout_width="174dp"
+                        android:layout_height="40dp"
+                        android:layout_marginBottom="16dp"
+                        android:layout_weight="1"
+                        android:text="Yes" />
+                    <RadioButton
+                        android:id="@+id/frag2_sgr_no_radio"
+                        android:layout_width="174dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="No" />
 
-                        <RadioButton
-                            android:id="@+id/frag2_sgr_yes_radio"
-                            android:layout_width="174dp"
-                            android:layout_height="40dp"
-                            android:layout_marginBottom="16dp"
-                            android:layout_weight="1"
-                            android:text="Yes" />
-
-                        <RadioButton
-                            android:id="@+id/frag2_sgr_no_radio"
-                            android:layout_width="174dp"
-                            android:layout_height="40dp"
-                            android:layout_weight="1"
-                            android:text="No" />
-                    </LinearLayout>
+                    <RadioButton
+                        android:id="@+id/frag2_sgr_normal_radio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:text="normal" />
                 </RadioGroup>
-
                 <TextView
                     android:id="@+id/textView17"
                     android:layout_width="match_parent"
@@ -285,41 +291,30 @@
                     android:fontFamily="sans-serif-condensed"
                     android:text="Are you vacinated"
                     android:textStyle="bold" />
-
                 <RadioGroup
+                    android:id="@+id/vac_grp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                        <RadioButton
-                            android:id="@+id/frag2_vac_yes_radio"
-                            android:layout_width="174dp"
-                            android:layout_height="40dp"
-                            android:layout_marginBottom="16dp"
-                            android:layout_weight="1"
-                            android:text="Yes" />
-
-                        <RadioButton
-                            android:id="@+id/frag2_vac_no_radio"
-                            android:layout_width="174dp"
-                            android:layout_height="40dp"
-                            android:layout_weight="1"
-                            android:text="No" />
-                    </LinearLayout>
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/frag2_vac_yes_radio"
+                        android:layout_width="174dp"
+                        android:layout_height="40dp"
+                        android:layout_marginBottom="16dp"
+                        android:layout_weight="1"
+                        android:text="Yes" />
+                    <RadioButton
+                        android:id="@+id/frag2_vac_no_radio"
+                        android:layout_width="174dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="No" />
                 </RadioGroup>
-
             </LinearLayout>
-
-
             <Button
                 android:id="@+id/frag2_next_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:layout_alignParentEnd="false"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"

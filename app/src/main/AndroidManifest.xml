@@ -18,7 +18,7 @@
             android:exported="false"
             android:windowSoftInputMode="adjustPan|adjustResize"/>
         <activity
-            android:name=".HealthDetails"
+            android:name=".MainActivity$HealthDetails"
             android:exported="false"
             android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait"
