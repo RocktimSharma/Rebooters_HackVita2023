@@ -20,10 +20,10 @@ SecondActivity extends AppCompatActivity {
 
         //get the current user
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
+        if (user == null) {
             //User is Logged in
             // Intent is used to switch from one activity to another.
-            Intent i = new Intent(SecondActivity.this, HomeActivity.class);
+            Intent i = new Intent(SecondActivity.this, LoginActivity.class);
             startActivity(i); // invoke the SecondActivity.
             finish(); // the current activity will get finished.
         }else{

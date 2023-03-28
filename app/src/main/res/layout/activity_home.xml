@@ -9,7 +9,7 @@
     tools:context=".HomeActivity">
 
     <ImageView
-        android:id="@+id/profile_imgVw"
+        android:id="@+id/homeA_profile_imgVw"
         android:layout_width="50dp"
         android:layout_height="50dp"
         app:srcCompat="@drawable/logo" />
@@ -18,12 +18,13 @@
         android:id="@+id/greet_txtVw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/profile_imgVw"
+        android:layout_below="@id/homeA_profile_imgVw"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
+        android:fontFamily="sans-serif-condensed"
         android:text="Good Morning"
         android:textColor="@color/blue_A700"
-        android:textSize="24sp"
+        android:textSize="34sp"
         android:textStyle="bold" />
 
     <TextView
@@ -32,6 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/greet_txtVw"
         android:text="Rocktim Sharma"
+        android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold" />
 

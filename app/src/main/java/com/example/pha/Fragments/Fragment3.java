@@ -1,6 +1,9 @@
 package com.example.pha.Fragments;
 
+import static androidx.constraintlayout.widget.Constraints.TAG;
+
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -8,21 +11,34 @@ import android.os.Bundle;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.pha.AddHealthInfo;
 import com.example.pha.HomeActivity;
 import com.example.pha.LoginActivity;
 import com.example.pha.R;
+import com.example.pha.RegisterActivity;
 import com.example.pha.SecondActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.io.IOException;
 
@@ -46,6 +62,13 @@ public class Fragment3 extends Fragment {
     private Button done_btn;
     private ImageButton back_imBtn;
     int SELECT_PICTURE = 200;
+
+    FirebaseAuth mFireBaseAuth;
+    FirebaseDatabase mFirebaseDatabase;
+    DatabaseReference databaseReference;
+
+    FirebaseStorage storage;
+    StorageReference storageReference;
     public Fragment3() {
         // Required empty public constructor
     }
@@ -85,6 +108,14 @@ public class Fragment3 extends Fragment {
         dp_imVw=view.findViewById(R.id.frag3_dp_imgVw);
         done_btn=view.findViewById(R.id.frag3_done_btn);
         back_imBtn=view.findViewById(R.id.frag3_back_imBtn);
+
+        mFireBaseAuth=FirebaseAuth.getInstance();
+        mFirebaseDatabase=FirebaseDatabase.getInstance();
+        databaseReference = mFirebaseDatabase.getReference("UserInfo");
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
+
+
         dp_imVw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,6 +128,7 @@ public class Fragment3 extends Fragment {
             public void onClick(View view) {
 
                 ((AddHealthInfo)getActivity()).getDataFromFragments();
+
 
                 Intent i = new Intent(getActivity(), HomeActivity.class);
                 startActivity(i); // invoke the SecondActivity.
@@ -145,6 +177,29 @@ public class Fragment3 extends Fragment {
                                     getActivity().getContentResolver(),
                                     selectedImageUri);
                             dp_imVw.setImageBitmap(selectedImageBitmap);
+
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                            // Code for showing progressDialog while uploading
+                            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                    .setPhotoUri(Uri.parse("https://www.facebook.com/photo/?fbid=405485793408933&set=a.101457440478438"))
+                                    .build();
+
+                            user.updateProfile(profileUpdates)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                Log.d(TAG, "User profile updated.");
+                                                Toast.makeText(getActivity(),"Profile successfully updated",Toast.LENGTH_LONG).show();
+
+                                            }
+                                        }
+                                    });
+
+
+
+
                         }
                         catch (IOException e) {
                             e.printStackTrace();
