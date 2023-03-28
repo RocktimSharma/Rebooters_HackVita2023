@@ -69,6 +69,7 @@ public class Fragment3 extends Fragment {
 
     FirebaseStorage storage;
     StorageReference storageReference;
+
     public Fragment3() {
         // Required empty public constructor
     }
@@ -104,13 +105,13 @@ public class Fragment3 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_3, container, false);
-        dp_imVw=view.findViewById(R.id.frag3_dp_imgVw);
-        done_btn=view.findViewById(R.id.frag3_done_btn);
-        back_imBtn=view.findViewById(R.id.frag3_back_imBtn);
+        View view = inflater.inflate(R.layout.fragment_3, container, false);
+        dp_imVw = view.findViewById(R.id.frag3_dp_imgVw);
+        done_btn = view.findViewById(R.id.frag3_done_btn);
+        back_imBtn = view.findViewById(R.id.frag3_back_imBtn);
 
-        mFireBaseAuth=FirebaseAuth.getInstance();
-        mFirebaseDatabase=FirebaseDatabase.getInstance();
+        mFireBaseAuth = FirebaseAuth.getInstance();
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = mFirebaseDatabase.getReference("UserInfo");
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
@@ -119,7 +120,7 @@ public class Fragment3 extends Fragment {
         dp_imVw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            imageChooser();
+                imageChooser();
             }
         });
 
@@ -127,7 +128,7 @@ public class Fragment3 extends Fragment {
             @Override
             public void onClick(View view) {
 
-                ((AddHealthInfo)getActivity()).getDataFromFragments();
+                ((AddHealthInfo) getActivity()).getDataFromFragments();
 
 
                 Intent i = new Intent(getActivity(), HomeActivity.class);
@@ -139,18 +140,15 @@ public class Fragment3 extends Fragment {
         back_imBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((AddHealthInfo)getActivity()).replaceFragments(2);
+                ((AddHealthInfo) getActivity()).replaceFragments(2);
             }
         });
-
-
 
 
         return view;
     }
 
-    private void imageChooser()
-    {
+    private void imageChooser() {
         Intent i = new Intent();
         i.setType("image/*");
         i.setAction(Intent.ACTION_GET_CONTENT);
@@ -191,23 +189,19 @@ public class Fragment3 extends Fragment {
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
                                                 Log.d(TAG, "User profile updated.");
-                                                Toast.makeText(getActivity(),"Profile successfully updated",Toast.LENGTH_LONG).show();
+                                                Toast.makeText(getActivity(), "Profile successfully updated", Toast.LENGTH_LONG).show();
 
                                             }
                                         }
                                     });
 
 
-
-
-                        }
-                        catch (IOException e) {
+                        } catch (IOException e) {
                             e.printStackTrace();
                         }
 
                     }
                 }
             });
-
 
 }

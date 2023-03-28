@@ -42,9 +42,7 @@ public class AddHealthInfo extends AppCompatActivity {
         viewPager.setAdapter(adapter);
         viewPager.setCurrentItem(0);
 
-        ArrayAdapter<CharSequence>adapter2=ArrayAdapter.createFromResource(this, R.array.languages, android.R.layout.simple_spinner_item);
-        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        spinnerLanguages.setAdapter(adapter2);
+
 
     }
 

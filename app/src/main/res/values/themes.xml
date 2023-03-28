@@ -32,6 +32,10 @@
 
     </style>
 
+    <style name="MyRadioButtonStyle" parent="@android:style/Widget.CompoundButton.RadioButton">
+        <item name="android:button">@drawable/female</item>
+    </style>
+
 
 
 
