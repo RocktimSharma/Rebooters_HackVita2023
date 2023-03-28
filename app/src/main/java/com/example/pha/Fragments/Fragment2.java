@@ -86,19 +86,6 @@ public class Fragment2 extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_2, container, false);
 
-       /* auto_c_txt = view.findViewById(R.id.autoc);
-        adapterItems = new ArrayAdapter<String>(this,R.layout.list_item,items);
-        auto_c_txt.setAdapter(adapterItems);
-        auto_c_txt.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
-                String item = parent.getItemAtPosition(position).toString();
-                //Toast.makeText(getApplicationContext(), "Item: " +item, Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
-        */
       /*  age_edTxt = view.findViewById(R.id.frag2_age_edTxt);
         height_ft_edTxt = view.findViewById(R.id.frag2_height_ft_edTxt);
         height_in_edTxt = view.findViewById(R.id.frag2_height_inc_edTxt);
@@ -179,7 +166,14 @@ public class Fragment2 extends Fragment {
 
         }*/
 
-        Spinner spinnerLanguages = view.findViewById(R.id.spinner_languages);
+        String[] items = {"A+","A-","B+","B-","AB","O+"};
+
+        //spinner for blood group not working
+        Spinner bloodGroup_spinner = view.findViewById(R.id.spinner_blood);
+
+        ArrayAdapter arrayAdapter = new ArrayAdapter(getActivity(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,items);
+        arrayAdapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
+        bloodGroup_spinner.setAdapter(arrayAdapter);
 
         return view;
     }

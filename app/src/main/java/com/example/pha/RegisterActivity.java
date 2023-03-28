@@ -35,6 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
     FirebaseAuth mFireBaseAuth;
     FirebaseDatabase mFirebaseDatabase;
     DatabaseReference databaseReference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
