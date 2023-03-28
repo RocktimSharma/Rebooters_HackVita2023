@@ -20,9 +20,7 @@ import android.widget.ImageView;
 
 import com.example.pha.AddHealthInfo;
 import com.example.pha.HomeActivity;
-import com.example.pha.LoginActivity;
 import com.example.pha.R;
-import com.example.pha.SecondActivity;
 
 import java.io.IOException;
 
@@ -82,7 +80,7 @@ public class Fragment3 extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_3, container, false);
-        dp_imVw=view.findViewById(R.id.frag3_dp_imgVw);
+        dp_imVw=view.findViewById(R.id.user_profile_img);
         done_btn=view.findViewById(R.id.frag3_done_btn);
         back_imBtn=view.findViewById(R.id.frag3_back_imBtn);
         dp_imVw.setOnClickListener(new View.OnClickListener() {
