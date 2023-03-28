@@ -8,10 +8,14 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.pha.AddHealthInfo;
@@ -25,6 +29,11 @@ import org.jetbrains.annotations.NotNull;
  * create an instance of this fragment.
  */
 public class Fragment2 extends Fragment {
+/*
+    String[] items = {"A+","A-","B+","B-","AB","O+"};
+    AutoCompleteTextView auto_c_txt;
+    ArrayAdapter<String> adapterItems;
+*/
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -76,6 +85,20 @@ public class Fragment2 extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_2, container, false);
+
+       /* auto_c_txt = view.findViewById(R.id.autoc);
+        adapterItems = new ArrayAdapter<String>(this,R.layout.list_item,items);
+        auto_c_txt.setAdapter(adapterItems);
+        auto_c_txt.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
+                String item = parent.getItemAtPosition(position).toString();
+                //Toast.makeText(getApplicationContext(), "Item: " +item, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        */
       /*  age_edTxt = view.findViewById(R.id.frag2_age_edTxt);
         height_ft_edTxt = view.findViewById(R.id.frag2_height_ft_edTxt);
         height_in_edTxt = view.findViewById(R.id.frag2_height_inc_edTxt);
@@ -155,6 +178,9 @@ public class Fragment2 extends Fragment {
             //done
 
         }*/
+
+        Spinner spinnerLanguages = view.findViewById(R.id.spinner_languages);
+
         return view;
     }
 }
