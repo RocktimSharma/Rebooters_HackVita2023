@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -33,7 +34,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class AddHealthInfo extends AppCompatActivity {
     private ViewPager viewPager;
-    private RadioGroup bp_radio, sgr_radio, vac_radio;
+    private RadioGroup bp_radio, sgr_radio, vac_radio,gender_rdGp;
     private Spinner spinner_blood;
     private String bg;
     private RadioButton bp, sgr, vac;
@@ -75,7 +76,8 @@ public class AddHealthInfo extends AppCompatActivity {
 
     public void getDataFromFragments(){
         //EditText ed=fragment2.getView().findViewById(R.id.frag2_age_edTxt);
-        RadioGroup gender_rdGp=fragment1.getView().findViewById(R.id.frag1_gender_radio);
+        gender_rdGp=fragment1.getView().findViewById(R.id.frag1_gender_radio);
+
 
         EditText age_edTxt = fragment2.getView().findViewById(R.id.frag2_age_edTxt);
         EditText height_ft_edTxt = fragment2.getView().findViewById(R.id.frag2_height_ft_edTxt);
@@ -91,7 +93,7 @@ public class AddHealthInfo extends AppCompatActivity {
         vac = fragment2.getView().findViewById(vac_radio.getCheckedRadioButtonId());
 
         RadioButton genderChecked=fragment1.getView().findViewById(gender_rdGp.getCheckedRadioButtonId());
-
+        Log.i("Test",String.valueOf(genderChecked));
         String gender=genderChecked.getText().toString();
 
         String[] items = {"A+","A-","B+","B-","AB","O+"};
