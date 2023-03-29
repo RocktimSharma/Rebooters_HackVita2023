@@ -3,7 +3,6 @@ package com.example.pha.Fragments;
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -26,10 +25,7 @@ import android.widget.Toast;
 
 import com.example.pha.AddHealthInfo;
 import com.example.pha.HomeActivity;
-import com.example.pha.LoginActivity;
 import com.example.pha.R;
-import com.example.pha.RegisterActivity;
-import com.example.pha.SecondActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -106,7 +102,7 @@ public class Fragment3 extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_3, container, false);
-        dp_imVw = view.findViewById(R.id.frag3_dp_imgVw);
+        dp_imVw = view.findViewById(R.id.dr_rcy_item_dp);
         done_btn = view.findViewById(R.id.frag3_done_btn);
         back_imBtn = view.findViewById(R.id.frag3_back_imBtn);
 
