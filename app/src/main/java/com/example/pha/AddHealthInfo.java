@@ -140,11 +140,11 @@ public class AddHealthInfo extends AppCompatActivity {
                         //    progressbar GONE
 
                         Toast.makeText(AddHealthInfo.this,"Data inserted Successful",Toast.LENGTH_LONG).show();
-                        /*Intent i = new Intent(RegisterActivity.this, AddHealthInfo.class);
+                        Intent i = new Intent(AddHealthInfo.this, TestDiseases.class);
                         startActivity(i); // invoke the RegisterActivity.
                         finish();
 
-                         */
+
                     }
                 });
 
