@@ -103,13 +103,7 @@ public class AddHealthInfo extends AppCompatActivity {
 
             }
         });
-        /*EditText bp_high_edTxt = fragment2.getView().findViewById(R.id.frag2_bp_heigh_radio);
-        EditText bp_low_edTxt = fragment2.getView().findViewById(R.id.frag2_bp_low_radio);
-        EditText sgr_yes_edTxt = fragment2.getView().findViewById(R.id.frag2_sgr_yes_radio);
-        EditText sgr_no_edTxt = fragment2.getView().findViewById(R.id.frag2_sgr_no_radio);
-        EditText vac_yes_edTxt = fragment2.getView().findViewById(R.id.frag2_vac_yes_radio);
-        EditText vac_no_edTxt = fragment2.getView().findViewById(R.id.frag2_vac_no_radio);
-         */
+
         String age=age_edTxt.getText().toString();
         String height_ft=height_ft_edTxt.getText().toString();
         String height_in=height_in_edTxt.getText().toString();
