@@ -38,19 +38,19 @@
             android:textColor="@color/light_grey" />
 
         <RadioGroup
-            android:id="@+id/frag1_gender_radio"
+            android:id="@+id/frag1_gender_radioGp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal">
 
             <RadioButton
-                android:id="@+id/radioButton2"
+                android:id="@+id/frag1_male_radio"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/male"
-                android:button="@null"
+
                 android:text="Male"
                 android:textColor="#00000000"
                 android:textColorHighlight="#00000000"
@@ -58,12 +58,11 @@
                 android:textColorLink="#00000000" />
 
             <RadioButton
-                android:id="@+id/radioButton"
+                android:id="@+id/frag1_female_radio"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/female"
-                android:button="@null"
                 android:text="Female"
                 android:textColor="#00000000"
                 android:textColorHighlight="#00000000"

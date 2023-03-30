@@ -5,6 +5,7 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -36,10 +37,18 @@ public class RegisterActivity extends AppCompatActivity {
     FirebaseDatabase mFirebaseDatabase;
     DatabaseReference databaseReference;
 
+    private ProgressDialog pDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+
+        pDialog = new ProgressDialog(RegisterActivity.this);
+
+
+
         name_edTxt=findViewById(R.id.registerA_name_edtxt);
         phone_edTxt=findViewById(R.id.registerA_phno_edtxt);
         password_edTxt=findViewById(R.id.registerA_password_edtxt);
@@ -73,6 +82,9 @@ public class RegisterActivity extends AppCompatActivity {
                      phone_edTxt.requestFocus();
                  }else if(!(email.isEmpty() && password.isEmpty())){
                      Log.i("Test 1","Wokring 1");
+
+                     pDialog.setMessage("Registering...");
+                     pDialog.show();
                      mFireBaseAuth.createUserWithEmailAndPassword(email,password)
                              .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                                  @Override
@@ -128,10 +140,12 @@ public class RegisterActivity extends AppCompatActivity {
 
 
                                      }else{
+                                         pDialog.setMessage("Failed");
                                          Toast.makeText(RegisterActivity.this,"Registration Failed",Toast.LENGTH_LONG).show();
                                      }
                                  }
                              });
+                     pDialog.hide();
                  }
 
                     }

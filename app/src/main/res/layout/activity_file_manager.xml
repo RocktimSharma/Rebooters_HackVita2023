@@ -17,7 +17,9 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"></androidx.appcompat.widget.Toolbar>
+            android:layout_height="?attr/actionBarSize"
+            app:menu="@menu/file_manager_menu"
+            app:title="Records"></androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -45,6 +47,11 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
                 android:src="@drawable/icon_camera_alt_24" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/file_manager_rcyVw"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
 
         </RelativeLayout>

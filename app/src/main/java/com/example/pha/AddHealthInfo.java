@@ -3,22 +3,16 @@ package com.example.pha;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.AlertDialog;
-import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
-import android.os.Bundle;
 import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import com.example.pha.Fragments.Fragment1;
 import com.example.pha.Fragments.Fragment2;
@@ -33,10 +27,10 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class AddHealthInfo extends AppCompatActivity {
     private ViewPager viewPager;
-    private RadioGroup bp_radio, sgr_radio, vac_radio;
+    private RadioGroup bp_radio, sgr_radio, vac_radio,gender_rdGp;
     private Spinner spinner_blood;
     private String bg;
-    private RadioButton bp, sgr, vac;
+    private RadioButton bp, sgr, vac,genderChecked;
     Fragment2 fragment2;
     Fragment1 fragment1;
     FirebaseAuth mFireBaseAuth;
@@ -54,11 +48,12 @@ public class AddHealthInfo extends AppCompatActivity {
         databaseReference = mFirebaseDatabase.getReference("UserHealthInfo");
 
        // getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment1()).commit();
-        fragment2=new Fragment2();
         fragment1=new Fragment1();
+        fragment2=new Fragment2();
+
         viewPager = (ViewPager) findViewById(R.id.adHltInfo_viewpager);
         ViewPagerAdapter adapter = new ViewPagerAdapter (AddHealthInfo.this.getSupportFragmentManager());
-        adapter.add(new Fragment1(), "Fragment 1");
+        adapter.add(fragment1, "Fragment 1");
         adapter.add(fragment2, "Fragment 2");
         adapter.add(new Fragment3(), "Fragment 3");
         viewPager.setAdapter(adapter);
@@ -75,7 +70,7 @@ public class AddHealthInfo extends AppCompatActivity {
 
     public void getDataFromFragments(){
         //EditText ed=fragment2.getView().findViewById(R.id.frag2_age_edTxt);
-        RadioGroup gender_rdGp=fragment1.getView().findViewById(R.id.frag1_gender_radio);
+
 
         EditText age_edTxt = fragment2.getView().findViewById(R.id.frag2_age_edTxt);
         EditText height_ft_edTxt = fragment2.getView().findViewById(R.id.frag2_height_ft_edTxt);
@@ -84,13 +79,13 @@ public class AddHealthInfo extends AppCompatActivity {
         bp_radio = fragment2.getView().findViewById(R.id.blood_p_grp);
         sgr_radio = fragment2.getView().findViewById(R.id.sugar_grp);
         vac_radio = fragment2.getView().findViewById(R.id.vac_grp);
-
+        gender_rdGp=fragment1.getView().findViewById(R.id.frag1_gender_radioGp);
         //bp_radio.getCheckedRadioButtonId();
         bp = fragment2.getView().findViewById(bp_radio.getCheckedRadioButtonId());
         sgr = fragment2.getView().findViewById(sgr_radio.getCheckedRadioButtonId());
         vac = fragment2.getView().findViewById(vac_radio.getCheckedRadioButtonId());
 
-        RadioButton genderChecked=fragment1.getView().findViewById(gender_rdGp.getCheckedRadioButtonId());
+        genderChecked=fragment1.getView().findViewById(gender_rdGp.getCheckedRadioButtonId());
 
         String gender=genderChecked.getText().toString();
 
@@ -130,21 +125,26 @@ public class AddHealthInfo extends AppCompatActivity {
         Spinner spinner_Language = fragment2.getView().findViewById(R.id.spinner_blood);
         //vac_grp sugar_grp blood_p_grp
         HealthInfo healthInfo=new HealthInfo(gender,Integer.parseInt(age), Integer.parseInt(height_in), Integer.parseInt(height_ft), Integer.parseInt(weight), bp.getText().toString(), sgr.getText().toString(), vac.getText().toString(), bg);
-        Toast.makeText(AddHealthInfo.this,age,Toast.LENGTH_LONG).show();
 
+        Log.i("Test Ah 2", "Called");
         databaseReference
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(healthInfo).
                 addOnCompleteListener(new OnCompleteListener<Void>() {
+
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         //    progressbar GONE
+                        if(task.isSuccessful()){
+                            Log.i("Test Ah 1", "Successful");
+                            Toast.makeText(AddHealthInfo.this,"Data inserted Successful",Toast.LENGTH_LONG).show();
 
-                        Toast.makeText(AddHealthInfo.this,"Data inserted Successful",Toast.LENGTH_LONG).show();
-                        /*Intent i = new Intent(RegisterActivity.this, AddHealthInfo.class);
-                        startActivity(i); // invoke the RegisterActivity.
-                        finish();
+                        }else{
+                            Log.i("Test Ah 2", "Failed");
+                            Toast.makeText(AddHealthInfo.this,"Data inserted failed" + task.getException(),Toast.LENGTH_LONG).show();
 
-                         */
+                        }
+
+
                     }
                 });
 

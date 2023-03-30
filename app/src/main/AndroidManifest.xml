@@ -14,6 +14,12 @@
         android:theme="@style/MTheme.PHA"
         tools:targetApi="31">
         <activity
+            android:name=".FileManagerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TestActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddRecord"
             android:exported="false" />
         <activity
@@ -42,7 +48,7 @@
             android:name=".HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".UserProfile"
+            android:name=".UserProfileActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan|adjustResize" />
         <activity
