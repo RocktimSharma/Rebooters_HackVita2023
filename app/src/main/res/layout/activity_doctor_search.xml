@@ -52,7 +52,7 @@
                 android:background="@drawable/outlined_rectangle"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text=""
+                android:hint="search"
                 android:textColor="@color/black" />
 
             <LinearLayout

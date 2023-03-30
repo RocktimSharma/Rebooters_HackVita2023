@@ -90,7 +90,7 @@ public class HomeActivity extends AppCompatActivity {
         doc_ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            //    startActivity(new Intent(HomeActivity.this,TestDiseases.class));
+               startActivity(new Intent(HomeActivity.this,DoctorSearch.class));
             }
         });
 
