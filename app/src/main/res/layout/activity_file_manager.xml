@@ -8,6 +8,17 @@
     android:layout_height="match_parent"
     android:background="@color/grey">
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fileA_cm_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+
+        android:layout_gravity="bottom|right"
+        android:layout_margin="20dp"
+        android:baselineAlignBottom="false"
+        android:src="@drawable/icon_camera_alt_24" />
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -36,21 +47,12 @@
                 app:queryHint="Search here ......" />
 
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fileA_cm_fab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                android:src="@drawable/icon_camera_alt_24" />
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/file_manager_rcyVw"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/activity_file_search_view" />
+                android:layout_below="@id/activity_file_search_view"
+                tools:listitem="@layout/file_recycular_item" />
 
 
         </RelativeLayout>

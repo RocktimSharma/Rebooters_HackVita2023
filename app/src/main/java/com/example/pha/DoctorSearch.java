@@ -23,8 +23,8 @@ public class DoctorSearch extends AppCompatActivity {
         setContentView(R.layout.activity_doctor_search);
 
         dr_name=findViewById(R.id.dr_searchA_name_txt);
-        search_bar=findViewById(R.id.dr_search_bar_edtTxt);
-        search_list=findViewById(R.id.dr_search_scroll_view);
+      //  search_bar=findViewById(R.id.dr_search_bar_edtTxt);
+      //  search_list=findViewById(R.id.dr_search_scroll_view);
 
         auth=FirebaseAuth.getInstance();
         user= auth.getCurrentUser();
