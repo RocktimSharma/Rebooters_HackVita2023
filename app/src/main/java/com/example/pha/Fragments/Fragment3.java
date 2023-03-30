@@ -25,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.pha.AddHealthInfo;
+import com.example.pha.AddRecord;
 import com.example.pha.HomeActivity;
 import com.example.pha.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -177,8 +178,77 @@ public class Fragment3 extends Fragment {
                 if (result.getResultCode()
                         == Activity.RESULT_OK) {
                     Intent data = result.getData();
+
+
+
+
+                  //  Intent data = result.getData();
+                    Uri originalUri;
                     // do your operation from here....
-                    if (data != null
+
+
+                    if (Build.VERSION.SDK_INT < 19) {
+                        originalUri= data.getData();
+                    } else {
+                        originalUri= data.getData();
+                        final int takeFlags = data.getFlags()
+                                & (Intent.FLAG_GRANT_READ_URI_PERMISSION
+                                | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+
+                        try {
+                            getActivity().getContentResolver().takePersistableUriPermission(originalUri, takeFlags);
+                        }
+                        catch (SecurityException e){
+                            e.printStackTrace();
+                        }
+                    }
+                    Bitmap selectedImageBitmap = null;
+
+
+
+                    try {
+                        selectedImageBitmap
+                                = MediaStore.Images.Media.getBitmap(
+                                getActivity().getContentResolver(),
+                                originalUri);
+                        dp_imVw.setImageBitmap(selectedImageBitmap);
+
+                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                        // Code for showing progressDialog while uploading
+                        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                .setPhotoUri(originalUri)
+                                .build();
+
+                        user.updateProfile(profileUpdates)
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            Log.d(TAG, "User profile updated.");
+                                            Toast.makeText(getActivity(), "Profile successfully updated", Toast.LENGTH_LONG).show();
+
+                                        }
+                                    }
+                                });
+
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+
+
+
+
+
+
+
+
+
+
+                    // do your operation from here....
+               /*     if (data != null
                             && data.getData() != null) {
                         Uri selectedImageUri = data.getData();
                         Bitmap selectedImageBitmap = null;
@@ -213,7 +283,7 @@ public class Fragment3 extends Fragment {
                             e.printStackTrace();
                         }
 
-                    }
+                    }*/
                 }
             });
 

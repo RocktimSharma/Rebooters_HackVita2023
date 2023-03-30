@@ -67,7 +67,7 @@ public class AddRecord extends AppCompatActivity {
             launchSomeActivity.launch(intent);
         }
     }
-    ActivityResultLauncher<Intent> launchSomeActivity
+        ActivityResultLauncher<Intent> launchSomeActivity
             = registerForActivityResult(
             new ActivityResultContracts
                     .StartActivityForResult(),
@@ -75,7 +75,71 @@ public class AddRecord extends AppCompatActivity {
                 if (result.getResultCode()
                         == Activity.RESULT_OK) {
                     Intent data = result.getData();
+                    Uri originalUri;
                     // do your operation from here....
+
+
+                    if (Build.VERSION.SDK_INT < 19) {
+                        originalUri= data.getData();
+                    } else {
+                        originalUri= data.getData();
+                        final int takeFlags = data.getFlags()
+                                & (Intent.FLAG_GRANT_READ_URI_PERMISSION
+                                | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+
+                        try {
+                            AddRecord.this.getContentResolver().takePersistableUriPermission(originalUri, takeFlags);
+                        }
+                        catch (SecurityException e){
+                            e.printStackTrace();
+                        }
+                    }
+                    Bitmap selectedImageBitmap = null;
+
+
+
+                    try {
+                        selectedImageBitmap
+                                = MediaStore.Images.Media.getBitmap(
+                                AddRecord.this.getContentResolver(),
+                                originalUri);
+                        photo_imgVw.setImageBitmap(selectedImageBitmap);
+
+                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                        // Code for showing progressDialog while uploading
+                        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                .setPhotoUri(originalUri)
+                                .build();
+
+                        user.updateProfile(profileUpdates)
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            Log.d(TAG, "User profile updated.");
+                                            Toast.makeText(AddRecord.this, "Profile successfully updated", Toast.LENGTH_LONG).show();
+
+                                        }
+                                    }
+                                });
+
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+
+
+
+
+
+
+
+/*
+
+
+
                     if (data != null
                             && data.getData() != null) {
                         Uri selectedImageUri = data.getData();
@@ -111,7 +175,7 @@ public class AddRecord extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
-                    }
+                    }*/
                 }
             });
 
