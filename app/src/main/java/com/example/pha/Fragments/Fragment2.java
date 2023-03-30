@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -117,6 +118,21 @@ public class Fragment2 extends Fragment {
         arrayAdapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
         bloodGroup_spinner.setAdapter(arrayAdapter);
 
+        if(bp_rGp.getCheckedRadioButtonId()!=-1){
+            bpChecked=view.findViewById(bp_rGp.getCheckedRadioButtonId());
+            bloodPressure = bpChecked.getText().toString();
+        }
+        if(sg_rGp.getCheckedRadioButtonId()!=-1){
+            sgChecked=view.findViewById(sg_rGp.getCheckedRadioButtonId());
+            sugar = sgChecked.getText().toString();
+        }if(v_rGp.getCheckedRadioButtonId()!=-1){
+            vacChecked=view.findViewById(v_rGp.getCheckedRadioButtonId());
+            vacinated = vacChecked.getText().toString();
+        }
+
+
+
+
         bp_rGp.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -141,6 +157,20 @@ public class Fragment2 extends Fragment {
             }
         });
 
+        bloodGroup=bloodGroup_spinner.getSelectedItem().toString();
+
+        bloodGroup_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                bloodGroup = items[i];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
 
 
 
@@ -155,17 +185,7 @@ public class Fragment2 extends Fragment {
                 height_ft = height_ft_edTxt.getText().toString();
                 weight = weight_edTxt.getText().toString();
 
-                bloodGroup_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                        bloodGroup = items[i];
-                    }
 
-                    @Override
-                    public void onNothingSelected(AdapterView<?> adapterView) {
-
-                    }
-                });
 
 
                 //check
@@ -181,9 +201,15 @@ public class Fragment2 extends Fragment {
                 } else if (TextUtils.isEmpty(weight)) {
                     age_edTxt.setError("Please fill the info");
                     age_edTxt.requestFocus();
-                }
-                else{
-                    ((AddHealthInfo)getActivity()).setDetails(Integer.parseInt(age),Integer.parseInt(height_ft),Integer.parseInt(height_in),Integer.parseInt(weight),bloodGroup,bloodPressure,sugar,vacinated);
+                } else if(bp_rGp.getCheckedRadioButtonId()==-1){
+
+                } else if(sg_rGp.getCheckedRadioButtonId()==-1){
+
+                }else if(v_rGp.getCheckedRadioButtonId()==-1){
+
+                }else{
+                    Log.i("Test 1",sugar);
+                    ((AddHealthInfo) getActivity()).setDetails(Integer.parseInt(age),Integer.parseInt(height_ft),Integer.parseInt(height_in),Integer.parseInt(weight),bloodGroup,bloodPressure,sugar,vacinated);
                     ((AddHealthInfo) getActivity()).replaceFragments(3);
                 }
 

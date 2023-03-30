@@ -71,64 +71,6 @@ public class AddHealthInfo extends AppCompatActivity {
     public void getDataFromFragments(){
 
 
-        Log.i("Test",healthInfo.getGender());
-        Log.i("Test",healthInfo.getSgr());
-
-
-
-   /*     EditText age_edTxt = fragment2.getView().findViewById(R.id.frag2_age_edTxt);
-        EditText height_ft_edTxt = fragment2.getView().findViewById(R.id.frag2_height_ft_edTxt);
-        EditText height_in_edTxt = fragment2.getView().findViewById(R.id.frag2_height_inc_edTxt);
-        EditText weight_edTxt = fragment2.getView().findViewById(R.id.frag2_weight_edTxt);
-        bp_radio = fragment2.getView().findViewById(R.id.blood_p_grp);
-        sgr_radio = fragment2.getView().findViewById(R.id.sugar_grp);
-        vac_radio = fragment2.getView().findViewById(R.id.vac_grp);
-        View v=fragment1.getView();
-        Log.i("Test",v.toString());
-        gender_rdGp=fragment1.getView().findViewById(R.id.frag1_gender_rdGp);
-        //bp_radio.getCheckedRadioButtonId();
-        bp = fragment2.getView().findViewById(bp_radio.getCheckedRadioButtonId());
-        sgr = fragment2.getView().findViewById(sgr_radio.getCheckedRadioButtonId());
-        vac = fragment2.getView().findViewById(vac_radio.getCheckedRadioButtonId());
-
-        genderChecked=fragment1.getView().findViewById(gender_rdGp.getCheckedRadioButtonId());
-
-        String gender=genderChecked.getText().toString();
-
-*//*
-
-        spinner_blood = fragment2.getView().findViewById(R.id.spinner_blood);
-        spinner_blood.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                bg = items[i];
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
-        String age=age_edTxt.getText().toString();
-        String height_ft=height_ft_edTxt.getText().toString();
-        String height_in=height_in_edTxt.getText().toString();
-        String weight=weight_edTxt.getText().toString();
-
-        String bp_high=bp_high_edTxt.getText().toString();
-        String bp_low=bp_low_edTxt.getText().toString();
-        String sgr_yes=sgr_yes_edTxt.getText().toString();
-        String sgr_no=sgr_no_edTxt.getText().toString();
-        String vac_yes=vac_yes_edTxt.getText().toString();
-        String vac_no=vac_no_edTxt.getText().toString();
-         */
-   //     Spinner spinner_Language = fragment2.getView().findViewById(R.id.spinner_blood);
-        //vac_grp sugar_grp blood_p_grp
-     //   HealthInfo healthInfo=new HealthInfo(gender,Integer.parseInt(age), Integer.parseInt(height_in), Integer.parseInt(height_ft), Integer.parseInt(weight), bp.getText().toString(), sgr.getText().toString(), vac.getText().toString(), bg);
-
-      //  Log.i("Test 2", String.valueOf(healthInfo.getGender()));
-
-
 
 
        /* databaseReference
@@ -160,6 +102,15 @@ public class AddHealthInfo extends AppCompatActivity {
     }
 
     public  void setDetails(int a,int h1,int h2,int w,String bg,String bp,String s ,String v){
+        Log.i("Frag 2",String.valueOf(a));
+        Log.i("Frag 2",String.valueOf(h1));
+        Log.i("Frag 2",String.valueOf(h2));
+        Log.i("Frag 2",String.valueOf(w));
+        Log.i("Frag 2",String.valueOf(bg));
+        Log.i("Frag 2",String.valueOf(bp));
+        Log.i("Frag 2",String.valueOf(s));
+        Log.i("Frag 2",String.valueOf(v));
+
         healthInfo.setAge(a);
         healthInfo.setHeight_ft(h1);
         healthInfo.setHeight_in(h2);
@@ -168,6 +119,7 @@ public class AddHealthInfo extends AppCompatActivity {
         healthInfo.setBp(bp);
         healthInfo.setSgr(s);
         healthInfo.setVac(v);
+        Log.i("Test",healthInfo.getSgr());
 
     }
 

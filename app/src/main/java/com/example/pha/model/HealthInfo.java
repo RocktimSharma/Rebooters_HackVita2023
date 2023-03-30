@@ -2,8 +2,8 @@ package com.example.pha.model;
 
 public class HealthInfo {
     int age, height_in, height_ft, weight;
-    String bp, sgr, vac, gender;
-    String blood;
+    String blood,bp, sgr, vac, gender;
+
 
     public int getAge() {
         return age;
@@ -37,6 +37,14 @@ public class HealthInfo {
         this.weight = weight;
     }
 
+    public String getBlood() {
+        return blood;
+    }
+
+    public void setBlood(String blood) {
+        this.blood = blood;
+    }
+
     public String getBp() {
         return bp;
     }
@@ -68,16 +76,4 @@ public class HealthInfo {
     public void setGender(String gender) {
         this.gender = gender;
     }
-
-    public String getBlood() {
-        return blood;
-    }
-
-    public void setBlood(String blood) {
-        this.blood = blood;
-    }
-
-    //constructor
-
-
 }
