@@ -30,11 +30,21 @@
             android:exported="false"
             android:windowSoftInputMode="adjustPan|adjustResize" />
         <activity
-            android:name=".HealthDetails"
+            android:name=".TestActivity"
             android:configChanges="orientation"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name=".FileManagerActivity"
+            android:configChanges="orientation"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+
+
         <activity
             android:name=".RegisterActivity"
             android:configChanges="orientation"
