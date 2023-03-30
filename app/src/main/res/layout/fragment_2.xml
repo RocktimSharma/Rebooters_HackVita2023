@@ -202,7 +202,7 @@
                     android:id="@+id/spinner_blood"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
+                    android:layout_marginBottom="338dp"
                     android:spinnerMode="dropdown"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -219,30 +219,29 @@
                     android:textStyle="bold" />
 
                 <RadioGroup
-                    android:id="@+id/blood_p_grp"
+                    android:id="@+id/frg2_bp_radiogp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="3"
                     android:orientation="horizontal">
 
                     <RadioButton
                         android:id="@+id/frag2_bp_low_radio"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
                         android:layout_weight="1"
                         android:text="Low" />
 
                     <RadioButton
                         android:id="@+id/frag2_bp_heigh_radio"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
                         android:layout_marginBottom="16dp"
                         android:layout_weight="1"
                         android:text="High" />
 
                     <RadioButton
                         android:id="@+id/frag2_bp_normal_radio"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:checked="true"
@@ -259,23 +258,23 @@
                     android:textStyle="bold" />
 
                 <RadioGroup
-                    android:id="@+id/sugar_grp"
+                    android:id="@+id/frg2_sugar_radiogp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
 
                     <RadioButton
                         android:id="@+id/frag2_sgr_yes_radio"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="174dp"
+                        android:layout_height="40dp"
                         android:layout_marginBottom="16dp"
                         android:layout_weight="1"
                         android:text="Yes" />
 
                     <RadioButton
                         android:id="@+id/frag2_sgr_no_radio"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="174dp"
+                        android:layout_height="40dp"
                         android:layout_weight="1"
                         android:text="No" />
 
@@ -295,7 +294,7 @@
                     android:text="Are you vacinated"
                     android:textStyle="bold" />
                 <RadioGroup
-                    android:id="@+id/vac_grp"
+                    android:id="@+id/frg2_vaccine_radiogp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
