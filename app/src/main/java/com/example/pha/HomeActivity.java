@@ -24,7 +24,7 @@ import java.net.URL;
 
 public class HomeActivity extends AppCompatActivity {
     private FirebaseUser user;
-    FirebaseAuth auth;
+    private FirebaseAuth auth;
     private ImageView dp_imVw;
     private TextView greet_txtVw,name_txtVw;
     private LinearLayout test_ll, doc_ll, record_ll,medication_ll;
