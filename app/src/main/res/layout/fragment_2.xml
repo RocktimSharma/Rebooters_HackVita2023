@@ -21,7 +21,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/frag2_back_imBtn"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        android:scrollbarAlwaysDrawHorizontalTrack="false"
+        android:scrollbars="none">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -286,6 +288,7 @@
                         android:checked="true"
                         android:text="normal" />
                 </RadioGroup>
+
                 <TextView
                     android:id="@+id/textView17"
                     android:layout_width="match_parent"
@@ -293,11 +296,13 @@
                     android:fontFamily="sans-serif-condensed"
                     android:text="Are you vacinated"
                     android:textStyle="bold" />
+
                 <RadioGroup
                     android:id="@+id/frg2_vaccine_radiogp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
+
                     <RadioButton
                         android:id="@+id/frag2_vac_yes_radio"
                         android:layout_width="174dp"
@@ -305,14 +310,17 @@
                         android:layout_marginBottom="16dp"
                         android:layout_weight="1"
                         android:text="Yes" />
+
                     <RadioButton
                         android:id="@+id/frag2_vac_no_radio"
                         android:layout_width="174dp"
                         android:layout_height="40dp"
                         android:layout_weight="1"
+                        android:checked="true"
                         android:text="No" />
                 </RadioGroup>
             </LinearLayout>
+
             <Button
                 android:id="@+id/frag2_next_btn"
                 android:layout_width="wrap_content"

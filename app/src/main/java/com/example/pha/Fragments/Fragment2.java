@@ -45,11 +45,19 @@ public class Fragment2 extends Fragment {
     private String mParam1;
     private String mParam2;
 
+
     private EditText age_edTxt, height_ft_edTxt, height_in_edTxt, weight_edTxt;
-    private RadioGroup bp_rGp,sg_rGp,v_rGp;
+    private RadioGroup bp_rGp, sg_rGp, v_rGp;
     private ImageButton back_imBtn;
     private Button next_Btn;
+    String[] items = {"A+", "A-", "B+", "B-", "AB", "O+"};
+
+
+    private String age, height_ft, height_in, weight, bloodGroup, bloodPressure, sugar, vacinated;
+    private RadioButton bpChecked, sgChecked, vacChecked;
+    View view;
     private Spinner bloodGroup_spinner;
+
     public Fragment2() {
         // Required empty public constructor
     }
@@ -86,27 +94,53 @@ public class Fragment2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_2, container, false);
+        view = inflater.inflate(R.layout.fragment_2, container, false);
 
         age_edTxt = view.findViewById(R.id.frag2_age_edTxt);
         height_ft_edTxt = view.findViewById(R.id.frag2_height_ft_edTxt);
         height_in_edTxt = view.findViewById(R.id.frag2_height_inc_edTxt);
         weight_edTxt = view.findViewById(R.id.frag2_weight_edTxt);
 
+        bp_rGp = view.findViewById(R.id.frg2_bp_radiogp);
+        sg_rGp = view.findViewById(R.id.frg2_sugar_radiogp);
+        v_rGp = view.findViewById(R.id.frg2_vaccine_radiogp);
 
 
-        next_Btn=view.findViewById(R.id.frag2_next_btn);
-        back_imBtn=view.findViewById(R.id.frag2_back_imBtn);
+        next_Btn = view.findViewById(R.id.frag2_next_btn);
+        back_imBtn = view.findViewById(R.id.frag2_back_imBtn);
 
-
-        String[] items = {"A+","A-","B+","B-","AB","O+"};
 
         //spinner for blood group not working
-       bloodGroup_spinner = view.findViewById(R.id.spinner_blood);
+        bloodGroup_spinner = view.findViewById(R.id.spinner_blood);
 
-        ArrayAdapter arrayAdapter = new ArrayAdapter(getActivity(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,items);
+        ArrayAdapter arrayAdapter = new ArrayAdapter(getActivity(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, items);
         arrayAdapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
         bloodGroup_spinner.setAdapter(arrayAdapter);
+
+        bp_rGp.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                bpChecked=view.findViewById(i);
+                bloodPressure = bpChecked.getText().toString();
+            }
+        });
+
+        sg_rGp.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                sgChecked=view.findViewById(i);
+                sugar = sgChecked.getText().toString();
+            }
+        });
+
+        v_rGp.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                vacChecked=view.findViewById(i);
+                vacinated = vacChecked.getText().toString();
+            }
+        });
+
 
 
 
@@ -114,14 +148,53 @@ public class Fragment2 extends Fragment {
         next_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((AddHealthInfo)getActivity()).replaceFragments(3);
+
+
+                age = age_edTxt.getText().toString();
+                height_in = height_in_edTxt.getText().toString();
+                height_ft = height_ft_edTxt.getText().toString();
+                weight = weight_edTxt.getText().toString();
+
+                bloodGroup_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                        bloodGroup = items[i];
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+
+                    }
+                });
+
+
+                //check
+                if (TextUtils.isEmpty(age)) {
+                    age_edTxt.setError("Please fill the info");
+                    age_edTxt.requestFocus();
+                } else if (TextUtils.isEmpty(height_in)) {
+                    age_edTxt.setError("Please fill the info");
+                    age_edTxt.requestFocus();
+                } else if (TextUtils.isEmpty(height_ft)) {
+                    age_edTxt.setError("Please fill the info");
+                    age_edTxt.requestFocus();
+                } else if (TextUtils.isEmpty(weight)) {
+                    age_edTxt.setError("Please fill the info");
+                    age_edTxt.requestFocus();
+                }
+                else{
+                    ((AddHealthInfo)getActivity()).setDetails(Integer.parseInt(age),Integer.parseInt(height_ft),Integer.parseInt(height_in),Integer.parseInt(weight),bloodGroup,bloodPressure,sugar,vacinated);
+                    ((AddHealthInfo) getActivity()).replaceFragments(3);
+                }
+
+
             }
         });
 
         back_imBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((AddHealthInfo)getActivity()).replaceFragments(1);
+                ((AddHealthInfo) getActivity()).replaceFragments(1);
             }
         });
 /*
@@ -176,7 +249,6 @@ public class Fragment2 extends Fragment {
             //done
 
         }*/
-
 
 
         return view;

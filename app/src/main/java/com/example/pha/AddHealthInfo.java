@@ -1,26 +1,19 @@
 package com.example.pha;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.Toast;
-import android.widget.EditText;
 
 import com.example.pha.Fragments.Fragment1;
 import com.example.pha.Fragments.Fragment2;
 import com.example.pha.Fragments.Fragment3;
 import com.example.pha.adapters.ViewPagerAdapter;
 import com.example.pha.model.HealthInfo;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -78,8 +71,12 @@ public class AddHealthInfo extends AppCompatActivity {
     public void getDataFromFragments(){
 
 
+        Log.i("Test",healthInfo.getGender());
+        Log.i("Test",healthInfo.getSgr());
 
-        EditText age_edTxt = fragment2.getView().findViewById(R.id.frag2_age_edTxt);
+
+
+   /*     EditText age_edTxt = fragment2.getView().findViewById(R.id.frag2_age_edTxt);
         EditText height_ft_edTxt = fragment2.getView().findViewById(R.id.frag2_height_ft_edTxt);
         EditText height_in_edTxt = fragment2.getView().findViewById(R.id.frag2_height_inc_edTxt);
         EditText weight_edTxt = fragment2.getView().findViewById(R.id.frag2_weight_edTxt);
@@ -98,7 +95,7 @@ public class AddHealthInfo extends AppCompatActivity {
 
         String gender=genderChecked.getText().toString();
 
-        String[] items = {"A+","A-","B+","B-","AB","O+"};
+*//*
 
         spinner_blood = fragment2.getView().findViewById(R.id.spinner_blood);
         spinner_blood.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -117,7 +114,7 @@ public class AddHealthInfo extends AppCompatActivity {
         String height_ft=height_ft_edTxt.getText().toString();
         String height_in=height_in_edTxt.getText().toString();
         String weight=weight_edTxt.getText().toString();
-        /*
+
         String bp_high=bp_high_edTxt.getText().toString();
         String bp_low=bp_low_edTxt.getText().toString();
         String sgr_yes=sgr_yes_edTxt.getText().toString();
@@ -125,7 +122,7 @@ public class AddHealthInfo extends AppCompatActivity {
         String vac_yes=vac_yes_edTxt.getText().toString();
         String vac_no=vac_no_edTxt.getText().toString();
          */
-        Spinner spinner_Language = fragment2.getView().findViewById(R.id.spinner_blood);
+   //     Spinner spinner_Language = fragment2.getView().findViewById(R.id.spinner_blood);
         //vac_grp sugar_grp blood_p_grp
      //   HealthInfo healthInfo=new HealthInfo(gender,Integer.parseInt(age), Integer.parseInt(height_in), Integer.parseInt(height_ft), Integer.parseInt(weight), bp.getText().toString(), sgr.getText().toString(), vac.getText().toString(), bg);
 
@@ -162,7 +159,7 @@ public class AddHealthInfo extends AppCompatActivity {
         healthInfo.setGender(g);
     }
 
-    public  void setDetails(int a,int h1,int h2,int w,String bg,String bp,String s,String v ){
+    public  void setDetails(int a,int h1,int h2,int w,String bg,String bp,String s ,String v){
         healthInfo.setAge(a);
         healthInfo.setHeight_ft(h1);
         healthInfo.setHeight_in(h2);

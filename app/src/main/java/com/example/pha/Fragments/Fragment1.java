@@ -33,8 +33,9 @@ public class Fragment1 extends Fragment {
     private String mParam2;
 
     private Button next_btn;
-
-
+    RadioGroup radioGroup;
+    RadioButton checked;
+ private View view;
 
 
     public Fragment1() {
@@ -75,31 +76,38 @@ public class Fragment1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_1, container, false);
+        view = inflater.inflate(R.layout.fragment_1, container, false);
 
         next_btn=view.findViewById(R.id.frag1_nxt_btn);
-        RadioGroup radioGroup=view.findViewById(R.id.frag1_gender_rdGp);
+        radioGroup=view.findViewById(R.id.frag1_gender_rdGp);
 
-        RadioButton checked=view.findViewById(radioGroup.getCheckedRadioButtonId());
-        String gender=checked.getText().toString();
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                checked=view.findViewById(i);
+            }
+        });
+
+
 
         next_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if(gender.isEmpty()){
-
+                if (radioGroup.getCheckedRadioButtonId() == -1)
+                {
+                    // no radio buttons are checked
                     Toast.makeText(getActivity(),"Please Select Your Gender",Toast.LENGTH_LONG).show();
                 }
-                else{
-                    ((AddHealthInfo)getActivity()).replaceFragments(2);
-                    ((AddHealthInfo)getActivity()).setGender(gender);
+                else
+                {
+                    // one of the radio buttons is checked
+                    String gender=checked.getText().toString();
+
+                        ((AddHealthInfo)getActivity()).replaceFragments(2);
+                        ((AddHealthInfo)getActivity()).setGender(gender);
+
                 }
-
-
-
-
-
 
             }
         });
