@@ -76,9 +76,9 @@ public class AddHealthInfo extends AppCompatActivity {
         EditText height_ft_edTxt = fragment2.getView().findViewById(R.id.frag2_height_ft_edTxt);
         EditText height_in_edTxt = fragment2.getView().findViewById(R.id.frag2_height_inc_edTxt);
         EditText weight_edTxt = fragment2.getView().findViewById(R.id.frag2_weight_edTxt);
-        bp_radio = fragment2.getView().findViewById(R.id.blood_p_grp);
-        sgr_radio = fragment2.getView().findViewById(R.id.sugar_grp);
-        vac_radio = fragment2.getView().findViewById(R.id.vac_grp);
+        bp_radio = fragment2.getView().findViewById(R.id.frg2_bp_radiogp);
+        sgr_radio = fragment2.getView().findViewById(R.id.frg2_sugar_radiogp);
+        vac_radio = fragment2.getView().findViewById(R.id.frg2_vaccine_radiogp);
         gender_rdGp=fragment1.getView().findViewById(R.id.frag1_gender_radioGp);
         //bp_radio.getCheckedRadioButtonId();
         bp = fragment2.getView().findViewById(bp_radio.getCheckedRadioButtonId());
