@@ -28,7 +28,7 @@
         android:padding="10dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/frag3_dp_imgVw"
+            android:id="@+id/dr_rcy_item_dp"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_centerHorizontal="true"
