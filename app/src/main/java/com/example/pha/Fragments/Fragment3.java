@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -145,11 +146,27 @@ public class Fragment3 extends Fragment {
     }
 
     private void imageChooser() {
-        Intent i = new Intent();
+
+        if (Build.VERSION.SDK_INT <19){
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            launchSomeActivity.launch(intent);
+        } else {
+            Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+            intent.addCategory(Intent.CATEGORY_OPENABLE);
+            intent.setType("image/*");
+            launchSomeActivity.launch(intent);
+        }
+
+
+
+
+      /*  Intent i = new Intent();
         i.setType("image/*");
         i.setAction(Intent.ACTION_GET_CONTENT);
 
-        launchSomeActivity.launch(i);
+        launchSomeActivity.launch(i);*/
     }
 
     ActivityResultLauncher<Intent> launchSomeActivity

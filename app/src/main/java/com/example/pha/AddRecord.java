@@ -11,6 +11,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -52,13 +53,19 @@ public class AddRecord extends AppCompatActivity {
 
 
     }
-/*
-    private void imageChooser() {
-        Intent i = new Intent();
-        i.setType("image/*");
-        i.setAction(Intent.ACTION_GET_CONTENT);
 
-        launchSomeActivity.launch(i);
+    private void imageChooser() {
+        if (Build.VERSION.SDK_INT <19){
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            launchSomeActivity.launch(intent);
+        } else {
+            Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+            intent.addCategory(Intent.CATEGORY_OPENABLE);
+            intent.setType("image/*");
+            launchSomeActivity.launch(intent);
+        }
     }
     ActivityResultLauncher<Intent> launchSomeActivity
             = registerForActivityResult(
@@ -76,9 +83,9 @@ public class AddRecord extends AppCompatActivity {
                         try {
                             selectedImageBitmap
                                     = MediaStore.Images.Media.getBitmap(
-                                    getActivity().getContentResolver(),
+                                    AddRecord.this.getContentResolver(),
                                     selectedImageUri);
-                            dp_imVw.setImageBitmap(selectedImageBitmap);
+                            photo_imgVw.setImageBitmap(selectedImageBitmap);
 
                             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -93,7 +100,7 @@ public class AddRecord extends AppCompatActivity {
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
                                                 Log.d(TAG, "User profile updated.");
-                                                Toast.makeText(getActivity(), "Profile successfully updated", Toast.LENGTH_LONG).show();
+                                                Toast.makeText(AddRecord.this, "Profile successfully updated", Toast.LENGTH_LONG).show();
 
                                             }
                                         }
@@ -108,7 +115,7 @@ public class AddRecord extends AppCompatActivity {
                 }
             });
 
-*/
+
 
 
 }
