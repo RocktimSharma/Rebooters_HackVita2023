@@ -56,7 +56,7 @@
                     android:fontFamily="sans-serif-condensed"
                     android:paddingBottom="2dp"
                     android:text="Age"
-                    android:textColor="@color/light_grey"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -80,7 +80,9 @@
                     android:layout_marginTop="5dp"
                     android:fontFamily="sans-serif-condensed"
                     android:paddingBottom="2dp"
+                    android:textColor="@color/black"
                     android:text="Height"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -147,7 +149,9 @@
                     android:layout_marginTop="5dp"
                     android:fontFamily="sans-serif-condensed"
                     android:paddingBottom="2dp"
+                    android:textColor="@color/black"
                     android:text="Weight"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -184,6 +188,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="sans-serif-condensed"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
                     android:text="Blood Group" />
 
                 <!--<com.google.android.material.textfield.TextInputLayout
@@ -216,8 +224,12 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-condensed"
+                    android:layout_marginTop="5dp"
                     android:text="Blood Presure"
-                    android:textStyle="bold" />
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                     />
 
                 <RadioGroup
                     android:id="@+id/frg2_bp_radiogp"
@@ -230,6 +242,7 @@
                         android:id="@+id/frag2_bp_low_radio"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-condensed"
                         android:layout_weight="1"
                         android:text="Low" />
 
@@ -239,6 +252,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"
                         android:layout_weight="1"
+                        android:fontFamily="sans-serif-condensed"
                         android:text="High" />
 
                     <RadioButton
@@ -247,7 +261,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:checked="true"
-                        android:text="normal" />
+                        android:fontFamily="sans-serif-condensed"
+                        android:text="Normal" />
 
                 </RadioGroup>
 
@@ -256,8 +271,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-condensed"
+                    android:layout_marginTop="5dp"
                     android:text="sugar"
-                    android:textStyle="bold" />
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
 
                 <RadioGroup
                     android:id="@+id/frg2_sugar_radiogp"
@@ -272,14 +290,16 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"
                         android:layout_weight="1"
-                        android:text="Yes" />
+                        android:fontFamily="sans-serif-condensed"
+                        android:text="Low" />
 
                     <RadioButton
                         android:id="@+id/frag2_sgr_no_radio"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="No" />
+                        android:fontFamily="sans-serif-condensed"
+                        android:text="High" />
 
                     <RadioButton
                         android:id="@+id/frag2_sgr_normal_radio"
@@ -287,15 +307,19 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:checked="true"
-                        android:text="normal" />
+                        android:fontFamily="sans-serif-condensed"
+                        android:text="Normal" />
                 </RadioGroup>
 
                 <TextView
                     android:id="@+id/textView17"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:fontFamily="sans-serif-condensed"
-                    android:text="Are you vacinated"
+                    android:text="Are you vacinated ?"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
                     android:textStyle="bold" />
 
                 <RadioGroup
@@ -311,6 +335,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"
                         android:layout_weight="1"
+                        android:fontFamily="sans-serif-condensed"
                         android:text="Yes" />
 
                     <RadioButton
@@ -318,6 +343,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:checked="true"
+                        android:fontFamily="sans-serif-condensed"
                         android:text="No" />
                 </RadioGroup>
             </LinearLayout>
@@ -333,6 +360,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
+                android:fontFamily="sans-serif-condensed"
                 android:text="Next" />
 
         </RelativeLayout>
