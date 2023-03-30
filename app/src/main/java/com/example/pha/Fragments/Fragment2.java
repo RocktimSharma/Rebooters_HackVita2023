@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -45,9 +46,10 @@ public class Fragment2 extends Fragment {
     private String mParam2;
 
     private EditText age_edTxt, height_ft_edTxt, height_in_edTxt, weight_edTxt;
-    private RadioButton bp_high_edTxt, bp_low_edTxt, sgr_yes_edTxt, sgr_no_edTxt, vac_yes_edTxt, vac_no_edTxt;
+    private RadioGroup bp_rGp,sg_rGp,v_rGp;
     private ImageButton back_imBtn;
     private Button next_Btn;
+    private Spinner bloodGroup_spinner;
     public Fragment2() {
         // Required empty public constructor
     }
@@ -86,19 +88,28 @@ public class Fragment2 extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_2, container, false);
 
-      /*  age_edTxt = view.findViewById(R.id.frag2_age_edTxt);
+        age_edTxt = view.findViewById(R.id.frag2_age_edTxt);
         height_ft_edTxt = view.findViewById(R.id.frag2_height_ft_edTxt);
         height_in_edTxt = view.findViewById(R.id.frag2_height_inc_edTxt);
         weight_edTxt = view.findViewById(R.id.frag2_weight_edTxt);
-        bp_high_edTxt = view.findViewById(R.id.frag2_bp_heigh_radio);
-        bp_low_edTxt = view.findViewById(R.id.frag2_bp_low_radio);
-        sgr_yes_edTxt = view.findViewById(R.id.frag2_sgr_yes_radio);
-        sgr_no_edTxt = view.findViewById(R.id.frag2_sgr_no_radio);
-        vac_yes_edTxt = view.findViewById(R.id.frag2_vac_yes_radio);
-        vac_no_edTxt = view.findViewById(R.id.frag2_vac_no_radio);*/
+
+
 
         next_Btn=view.findViewById(R.id.frag2_next_btn);
         back_imBtn=view.findViewById(R.id.frag2_back_imBtn);
+
+
+        String[] items = {"A+","A-","B+","B-","AB","O+"};
+
+        //spinner for blood group not working
+       bloodGroup_spinner = view.findViewById(R.id.spinner_blood);
+
+        ArrayAdapter arrayAdapter = new ArrayAdapter(getActivity(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,items);
+        arrayAdapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
+        bloodGroup_spinner.setAdapter(arrayAdapter);
+
+
+
 
         next_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -166,14 +177,7 @@ public class Fragment2 extends Fragment {
 
         }*/
 
-        String[] items = {"A+","A-","B+","B-","AB","O+"};
 
-        //spinner for blood group not working
-        Spinner bloodGroup_spinner = view.findViewById(R.id.spinner_blood);
-
-        ArrayAdapter arrayAdapter = new ArrayAdapter(getActivity(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,items);
-        arrayAdapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
-        bloodGroup_spinner.setAdapter(arrayAdapter);
 
         return view;
     }

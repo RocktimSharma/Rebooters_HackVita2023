@@ -38,7 +38,7 @@
             android:textColor="@color/light_grey" />
 
         <RadioGroup
-            android:id="@+id/frag1_gender_radioGp"
+            android:id="@+id/frag1_gender_rdGp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"

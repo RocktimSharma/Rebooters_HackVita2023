@@ -57,6 +57,7 @@
             android:name=".UserProfileActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan|adjustResize" />
+
         <activity
             android:name=".SecondActivity"
             android:exported="false"

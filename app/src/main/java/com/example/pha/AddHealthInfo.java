@@ -27,7 +27,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class AddHealthInfo extends AppCompatActivity {
     private ViewPager viewPager;
-    private RadioGroup bp_radio, sgr_radio, vac_radio,gender_rdGp;
+    private RadioGroup bp_radio, sgr_radio, vac_radio;
+    private  RadioGroup gender_rdGp;
     private Spinner spinner_blood;
     private String bg;
     private RadioButton bp, sgr, vac,genderChecked;
@@ -36,7 +37,7 @@ public class AddHealthInfo extends AppCompatActivity {
     FirebaseAuth mFireBaseAuth;
     FirebaseDatabase mFirebaseDatabase;
     DatabaseReference databaseReference;
-
+    HealthInfo healthInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +58,9 @@ public class AddHealthInfo extends AppCompatActivity {
         adapter.add(fragment2, "Fragment 2");
         adapter.add(new Fragment3(), "Fragment 3");
         viewPager.setAdapter(adapter);
-        viewPager.setCurrentItem(0);
+        replaceFragments(0);
+
+        healthInfo=new HealthInfo();
 
         /*
         spinner code for blood group not working
@@ -68,8 +71,12 @@ public class AddHealthInfo extends AppCompatActivity {
 
     }
 
+
+
+
+
     public void getDataFromFragments(){
-        //EditText ed=fragment2.getView().findViewById(R.id.frag2_age_edTxt);
+
 
 
         EditText age_edTxt = fragment2.getView().findViewById(R.id.frag2_age_edTxt);
@@ -79,7 +86,9 @@ public class AddHealthInfo extends AppCompatActivity {
         bp_radio = fragment2.getView().findViewById(R.id.blood_p_grp);
         sgr_radio = fragment2.getView().findViewById(R.id.sugar_grp);
         vac_radio = fragment2.getView().findViewById(R.id.vac_grp);
-        gender_rdGp=fragment1.getView().findViewById(R.id.frag1_gender_radioGp);
+        View v=fragment1.getView();
+        Log.i("Test",v.toString());
+        gender_rdGp=fragment1.getView().findViewById(R.id.frag1_gender_rdGp);
         //bp_radio.getCheckedRadioButtonId();
         bp = fragment2.getView().findViewById(bp_radio.getCheckedRadioButtonId());
         sgr = fragment2.getView().findViewById(sgr_radio.getCheckedRadioButtonId());
@@ -118,10 +127,14 @@ public class AddHealthInfo extends AppCompatActivity {
          */
         Spinner spinner_Language = fragment2.getView().findViewById(R.id.spinner_blood);
         //vac_grp sugar_grp blood_p_grp
-        HealthInfo healthInfo=new HealthInfo(gender,Integer.parseInt(age), Integer.parseInt(height_in), Integer.parseInt(height_ft), Integer.parseInt(weight), bp.getText().toString(), sgr.getText().toString(), vac.getText().toString(), bg);
+     //   HealthInfo healthInfo=new HealthInfo(gender,Integer.parseInt(age), Integer.parseInt(height_in), Integer.parseInt(height_ft), Integer.parseInt(weight), bp.getText().toString(), sgr.getText().toString(), vac.getText().toString(), bg);
 
-        Log.i("Test Ah 2", "Called");
-        databaseReference
+      //  Log.i("Test 2", String.valueOf(healthInfo.getGender()));
+
+
+
+
+       /* databaseReference
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(healthInfo).
                 addOnCompleteListener(new OnCompleteListener<Void>() {
 
@@ -140,12 +153,26 @@ public class AddHealthInfo extends AppCompatActivity {
 
 
                     }
-                });
+                });*/
 
 
     }
 
+    public void setGender(String g){
+        healthInfo.setGender(g);
+    }
 
+    public  void setDetails(int a,int h1,int h2,int w,String bg,String bp,String s,String v ){
+        healthInfo.setAge(a);
+        healthInfo.setHeight_ft(h1);
+        healthInfo.setHeight_in(h2);
+        healthInfo.setWeight(w);
+        healthInfo.setBlood(bg);
+        healthInfo.setBp(bp);
+        healthInfo.setSgr(s);
+        healthInfo.setVac(v);
+
+    }
 
 
     public void replaceFragments(int fragmentNo) {

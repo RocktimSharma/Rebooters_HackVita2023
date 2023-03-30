@@ -4,10 +4,14 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.example.pha.AddHealthInfo;
 import com.example.pha.R;
@@ -63,7 +67,7 @@ public class Fragment1 extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
+        setRetainInstance(true);
 
     }
 
@@ -74,13 +78,33 @@ public class Fragment1 extends Fragment {
         View view = inflater.inflate(R.layout.fragment_1, container, false);
 
         next_btn=view.findViewById(R.id.frag1_nxt_btn);
+        RadioGroup radioGroup=view.findViewById(R.id.frag1_gender_rdGp);
+
+        RadioButton checked=view.findViewById(radioGroup.getCheckedRadioButtonId());
+        String gender=checked.getText().toString();
+
         next_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((AddHealthInfo)getActivity()).replaceFragments(2);
+
+                if(gender.isEmpty()){
+
+                    Toast.makeText(getActivity(),"Please Select Your Gender",Toast.LENGTH_LONG).show();
+                }
+                else{
+                    ((AddHealthInfo)getActivity()).replaceFragments(2);
+                    ((AddHealthInfo)getActivity()).setGender(gender);
+                }
+
+
+
+
+
 
             }
         });
+
+
 
         return view;
 
