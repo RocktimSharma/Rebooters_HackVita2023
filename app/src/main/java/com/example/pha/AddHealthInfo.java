@@ -6,10 +6,13 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.widget.EditText;
 
 import com.example.pha.Fragments.Fragment1;
 import com.example.pha.Fragments.Fragment2;
@@ -24,8 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class AddHealthInfo extends AppCompatActivity {
     private ViewPager viewPager;
-    private RadioGroup bp_radio, sgr_radio, vac_radio;
-    private  RadioGroup gender_rdGp;
+    private RadioGroup bp_radio, sgr_radio, vac_radio,gender_rdGp;
     private Spinner spinner_blood;
     private String bg;
     private RadioButton bp, sgr, vac,genderChecked;
@@ -34,7 +36,7 @@ public class AddHealthInfo extends AppCompatActivity {
     FirebaseAuth mFireBaseAuth;
     FirebaseDatabase mFirebaseDatabase;
     DatabaseReference databaseReference;
-    HealthInfo healthInfo;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +57,7 @@ public class AddHealthInfo extends AppCompatActivity {
         adapter.add(fragment2, "Fragment 2");
         adapter.add(new Fragment3(), "Fragment 3");
         viewPager.setAdapter(adapter);
-        replaceFragments(0);
-
-        healthInfo=new HealthInfo();
+        viewPager.setCurrentItem(0);
 
         /*
         spinner code for blood group not working
@@ -68,15 +68,65 @@ public class AddHealthInfo extends AppCompatActivity {
 
     }
 
-
-
-
-
     public void getDataFromFragments(){
+        //EditText ed=fragment2.getView().findViewById(R.id.frag2_age_edTxt);
 
 
+        EditText age_edTxt = fragment2.getView().findViewById(R.id.frag2_dob_edTxt);
+        EditText height_ft_edTxt = fragment2.getView().findViewById(R.id.frag2_height_ft_edTxt);
+        EditText height_in_edTxt = fragment2.getView().findViewById(R.id.frag2_height_inc_edTxt);
+        EditText weight_edTxt = fragment2.getView().findViewById(R.id.frag2_weight_edTxt);
+        bp_radio = fragment2.getView().findViewById(R.id.frg2_bp_radiogp);
+        sgr_radio = fragment2.getView().findViewById(R.id.frg2_sugar_radiogp);
+        vac_radio = fragment2.getView().findViewById(R.id.frg2_vaccine_radiogp);
+        gender_rdGp=fragment1.getView().findViewById(R.id.frag1_gender_radioGp);
+        //bp_radio.getCheckedRadioButtonId();
+        bp = fragment2.getView().findViewById(bp_radio.getCheckedRadioButtonId());
+        sgr = fragment2.getView().findViewById(sgr_radio.getCheckedRadioButtonId());
+        vac = fragment2.getView().findViewById(vac_radio.getCheckedRadioButtonId());
 
+        genderChecked=fragment1.getView().findViewById(gender_rdGp.getCheckedRadioButtonId());
 
+        String gender=genderChecked.getText().toString();
+
+        String[] items = {"A+","A-","B+","B-","AB","O+"};
+
+        spinner_blood = fragment2.getView().findViewById(R.id.spinner_blood);
+        spinner_blood.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                bg = items[i];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        /*EditText bp_high_edTxt = fragment2.getView().findViewById(R.id.frag2_bp_heigh_radio);
+        EditText bp_low_edTxt = fragment2.getView().findViewById(R.id.frag2_bp_low_radio);
+        EditText sgr_yes_edTxt = fragment2.getView().findViewById(R.id.frag2_sgr_yes_radio);
+        EditText sgr_no_edTxt = fragment2.getView().findViewById(R.id.frag2_sgr_no_radio);
+        EditText vac_yes_edTxt = fragment2.getView().findViewById(R.id.frag2_vac_yes_radio);
+        EditText vac_no_edTxt = fragment2.getView().findViewById(R.id.frag2_vac_no_radio);
+         */
+        String age=age_edTxt.getText().toString();
+        String height_ft=height_ft_edTxt.getText().toString();
+        String height_in=height_in_edTxt.getText().toString();
+        String weight=weight_edTxt.getText().toString();
+        /*
+        String bp_high=bp_high_edTxt.getText().toString();
+        String bp_low=bp_low_edTxt.getText().toString();
+        String sgr_yes=sgr_yes_edTxt.getText().toString();
+        String sgr_no=sgr_no_edTxt.getText().toString();
+        String vac_yes=vac_yes_edTxt.getText().toString();
+        String vac_no=vac_no_edTxt.getText().toString();
+         */
+        Spinner spinner_Language = fragment2.getView().findViewById(R.id.spinner_blood);
+        //vac_grp sugar_grp blood_p_grp
+        HealthInfo healthInfo=new HealthInfo(gender,Integer.parseInt(age), Integer.parseInt(height_in), Integer.parseInt(height_ft), Integer.parseInt(weight), bp.getText().toString(), sgr.getText().toString(), vac.getText().toString(), bg);
+
+        Log.i("Test Ah 2", "Called");
         databaseReference
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(healthInfo).
                 addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -101,31 +151,7 @@ public class AddHealthInfo extends AppCompatActivity {
 
     }
 
-    public void setGender(String g){
-        healthInfo.setGender(g);
-    }
 
-    public  void setDetails(int a,int h1,int h2,int w,String bg,String bp,String s ,String v){
-        Log.i("Frag 2",String.valueOf(a));
-        Log.i("Frag 2",String.valueOf(h1));
-        Log.i("Frag 2",String.valueOf(h2));
-        Log.i("Frag 2",String.valueOf(w));
-        Log.i("Frag 2",String.valueOf(bg));
-        Log.i("Frag 2",String.valueOf(bp));
-        Log.i("Frag 2",String.valueOf(s));
-        Log.i("Frag 2",String.valueOf(v));
-
-        healthInfo.setAge(a);
-        healthInfo.setHeight_ft(h1);
-        healthInfo.setHeight_in(h2);
-        healthInfo.setWeight(w);
-        healthInfo.setBlood(bg);
-        healthInfo.setBp(bp);
-        healthInfo.setSgr(s);
-        healthInfo.setVac(v);
-        Log.i("Test",healthInfo.getSgr());
-
-    }
 
 
     public void replaceFragments(int fragmentNo) {

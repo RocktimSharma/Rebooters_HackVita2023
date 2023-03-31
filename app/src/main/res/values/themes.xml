@@ -36,7 +36,18 @@
         <item name="android:button">@drawable/female</item>
     </style>
 
+    <style name="DialogTheme" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+        <item name="colorAccent">@color/blue_A100</item>
+        <item name="android:buttonBarButtonStyle">@style/DatePickerTheme.ButtonBarButtonStyle</item>
+    </style>
 
+    <style name="DatePickerTheme.ButtonBarNegativeButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/blue_A700</item>
+    </style>
+
+    <style name="DatePickerTheme.ButtonBarButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/blue_A700</item>
+    </style>
 
 
 

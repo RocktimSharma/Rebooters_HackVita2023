@@ -1,11 +1,15 @@
 package com.example.pha.Fragments;
 
+
+
+import android.app.DatePickerDialog;
+import android.icu.util.Calendar;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
 import android.text.TextUtils;
-import android.util.Log;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,15 +17,18 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
+import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.pha.AddHealthInfo;
+import com.example.pha.MainActivity;
 import com.example.pha.R;
+import com.example.pha.SecondActivity;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -31,6 +38,9 @@ import org.jetbrains.annotations.NotNull;
  * create an instance of this fragment.
  */
 public class Fragment2 extends Fragment {
+
+
+
 /*
     String[] items = {"A+","A-","B+","B-","AB","O+"};
     AutoCompleteTextView auto_c_txt;
@@ -46,19 +56,16 @@ public class Fragment2 extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private EditText dob_edTxt, height_ft_edTxt, height_in_edTxt, weight_edTxt;
+    private RadioButton bp_high_edTxt, bp_low_edTxt, sgr_yes_edTxt, sgr_no_edTxt, vac_yes_edTxt, vac_no_edTxt;
 
-    private EditText age_edTxt, height_ft_edTxt, height_in_edTxt, weight_edTxt;
-    private RadioGroup bp_rGp, sg_rGp, v_rGp;
+    int year;
+    int month;
+    int day;
+
     private ImageButton back_imBtn;
     private Button next_Btn;
-    String[] items = {"A+", "A-", "B+", "B-", "AB", "O+"};
-
-
-    private String age, height_ft, height_in, weight, bloodGroup, bloodPressure, sugar, vacinated;
-    private RadioButton bpChecked, sgChecked, vacChecked;
-    View view;
-    private Spinner bloodGroup_spinner;
-
+    Calendar calendar;
     public Fragment2() {
         // Required empty public constructor
     }
@@ -95,134 +102,61 @@ public class Fragment2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_2, container, false);
+        View view =  inflater.inflate(R.layout.fragment_2, container, false);
 
-        age_edTxt = view.findViewById(R.id.frag2_age_edTxt);
+      /*  age_edTxt = view.findViewById(R.id.frag2_age_edTxt);
         height_ft_edTxt = view.findViewById(R.id.frag2_height_ft_edTxt);
         height_in_edTxt = view.findViewById(R.id.frag2_height_inc_edTxt);
         weight_edTxt = view.findViewById(R.id.frag2_weight_edTxt);
+        bp_high_edTxt = view.findViewById(R.id.frag2_bp_heigh_radio);
+        bp_low_edTxt = view.findViewById(R.id.frag2_bp_low_radio);
+        sgr_yes_edTxt = view.findViewById(R.id.frag2_sgr_yes_radio);
+        sgr_no_edTxt = view.findViewById(R.id.frag2_sgr_no_radio);
+        vac_yes_edTxt = view.findViewById(R.id.frag2_vac_yes_radio);
+        vac_no_edTxt = view.findViewById(R.id.frag2_vac_no_radio);*/
 
-        bp_rGp = view.findViewById(R.id.frg2_bp_radiogp);
-        sg_rGp = view.findViewById(R.id.frg2_sugar_radiogp);
-        v_rGp = view.findViewById(R.id.frg2_vaccine_radiogp);
-
-
-        next_Btn = view.findViewById(R.id.frag2_next_btn);
-        back_imBtn = view.findViewById(R.id.frag2_back_imBtn);
-
-
-        //spinner for blood group not working
-        bloodGroup_spinner = view.findViewById(R.id.spinner_blood);
-
-        ArrayAdapter arrayAdapter = new ArrayAdapter(getActivity(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, items);
-        arrayAdapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
-        bloodGroup_spinner.setAdapter(arrayAdapter);
-
-        if(bp_rGp.getCheckedRadioButtonId()!=-1){
-            bpChecked=view.findViewById(bp_rGp.getCheckedRadioButtonId());
-            bloodPressure = bpChecked.getText().toString();
-        }
-        if(sg_rGp.getCheckedRadioButtonId()!=-1){
-            sgChecked=view.findViewById(sg_rGp.getCheckedRadioButtonId());
-            sugar = sgChecked.getText().toString();
-        }if(v_rGp.getCheckedRadioButtonId()!=-1){
-            vacChecked=view.findViewById(v_rGp.getCheckedRadioButtonId());
-            vacinated = vacChecked.getText().toString();
-        }
-
-
-
-
-        bp_rGp.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                bpChecked=view.findViewById(i);
-                bloodPressure = bpChecked.getText().toString();
-            }
-        });
-
-        sg_rGp.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                sgChecked=view.findViewById(i);
-                sugar = sgChecked.getText().toString();
-            }
-        });
-
-        v_rGp.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                vacChecked=view.findViewById(i);
-                vacinated = vacChecked.getText().toString();
-            }
-        });
-
-        bloodGroup=bloodGroup_spinner.getSelectedItem().toString();
-
-        bloodGroup_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                bloodGroup = items[i];
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
-
-
-
+        next_Btn=view.findViewById(R.id.frag2_next_btn);
+        back_imBtn=view.findViewById(R.id.frag2_back_imBtn);
 
         next_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-                age = age_edTxt.getText().toString();
-                height_in = height_in_edTxt.getText().toString();
-                height_ft = height_ft_edTxt.getText().toString();
-                weight = weight_edTxt.getText().toString();
-
-
-
-
-                //check
-                if (TextUtils.isEmpty(age)) {
-                    age_edTxt.setError("Please fill the info");
-                    age_edTxt.requestFocus();
-                } else if (TextUtils.isEmpty(height_in)) {
-                    age_edTxt.setError("Please fill the info");
-                    age_edTxt.requestFocus();
-                } else if (TextUtils.isEmpty(height_ft)) {
-                    age_edTxt.setError("Please fill the info");
-                    age_edTxt.requestFocus();
-                } else if (TextUtils.isEmpty(weight)) {
-                    age_edTxt.setError("Please fill the info");
-                    age_edTxt.requestFocus();
-                } else if(bp_rGp.getCheckedRadioButtonId()==-1){
-
-                } else if(sg_rGp.getCheckedRadioButtonId()==-1){
-
-                }else if(v_rGp.getCheckedRadioButtonId()==-1){
-
-                }else{
-                    Log.i("Test 1",sugar);
-                    ((AddHealthInfo) getActivity()).setDetails(Integer.parseInt(age),Integer.parseInt(height_ft),Integer.parseInt(height_in),Integer.parseInt(weight),bloodGroup,bloodPressure,sugar,vacinated);
-                    ((AddHealthInfo) getActivity()).replaceFragments(3);
-                }
-
-
+                ((AddHealthInfo)getActivity()).replaceFragments(3);
             }
         });
 
         back_imBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((AddHealthInfo) getActivity()).replaceFragments(1);
+                ((AddHealthInfo)getActivity()).replaceFragments(1);
             }
         });
+
+
+        dob_edTxt=view.findViewById(R.id.frag2_dob_edTxt);
+        calendar= Calendar.getInstance();
+        dob_edTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                year=calendar.get(calendar.YEAR);
+                month=calendar.get(calendar.MONTH);
+                day=calendar.get(calendar.DAY_OF_MONTH);
+                DatePickerDialog datePickerDialog=new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        calendar.set(Calendar.YEAR, year);
+                        calendar.set(Calendar.MONTH, month);
+                        String date_selected = dayOfMonth + "/" + (month + 1) + "/"
+                                + year;
+                       dob_edTxt.setText(date_selected);
+
+                    }
+                },year,month,day);
+                datePickerDialog.show();
+
+            }
+        });
+
 /*
 
         //int age = Integer.parseInt(age_edTxt.getText().toString());
@@ -276,6 +210,14 @@ public class Fragment2 extends Fragment {
 
         }*/
 
+        String[] items = {"A+","A-","B+","B-","AB","O+"};
+
+        //spinner for blood group not working
+        Spinner bloodGroup_spinner = view.findViewById(R.id.spinner_blood);
+
+        ArrayAdapter arrayAdapter = new ArrayAdapter(getActivity(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,items);
+        arrayAdapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
+        bloodGroup_spinner.setAdapter(arrayAdapter);
 
         return view;
     }
