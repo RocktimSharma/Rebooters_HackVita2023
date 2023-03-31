@@ -1,5 +1,6 @@
 package com.example.pha;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
@@ -8,12 +9,15 @@ import android.util.Log;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.pha.Fragments.Fragment1;
 import com.example.pha.Fragments.Fragment2;
 import com.example.pha.Fragments.Fragment3;
 import com.example.pha.adapters.ViewPagerAdapter;
 import com.example.pha.model.HealthInfo;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -73,7 +77,7 @@ public class AddHealthInfo extends AppCompatActivity {
 
 
 
-       /* databaseReference
+        databaseReference
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(healthInfo).
                 addOnCompleteListener(new OnCompleteListener<Void>() {
 
@@ -92,7 +96,7 @@ public class AddHealthInfo extends AppCompatActivity {
 
 
                     }
-                });*/
+                });
 
 
     }
