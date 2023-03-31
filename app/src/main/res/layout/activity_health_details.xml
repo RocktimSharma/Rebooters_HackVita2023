@@ -36,6 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,13 +45,37 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:gravity="right"
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textView33"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="TextView" />
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/search_smpts_edTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:elevation="1dp"
+                    android:ems="10"
+                    android:hint="search"
+                    android:inputType="textPersonName"
+                    android:outlineProvider="bounds"
+                    android:padding="10dp" />
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/smts_listView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:id="@+id/next_in_symts"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Next" />
 
         </LinearLayout>
     </ScrollView>
