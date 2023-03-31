@@ -108,7 +108,18 @@
                 <ListView
                     android:id="@+id/addrecA_med_listVw"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent">
+
+                </ListView>
+
+                <Button
+                    android:id="@+id/save_record"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="save" />
+
             </LinearLayout>
 
         </RelativeLayout>

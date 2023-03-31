@@ -15,6 +15,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -32,12 +34,12 @@ public class AddRecord extends AppCompatActivity {
     private ImageView photo_imgVw;
     private EditText docName_et,phone_et,specialist_et,disease_et,medicine_et;
     private ListView medicine_lv;
+    private Button save_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_record);
-
 
         photo_imgVw=findViewById(R.id.addrecA_photo_imgVw);
         docName_et=findViewById(R.id.addrecA_docname_edtTxt);
@@ -46,12 +48,29 @@ public class AddRecord extends AppCompatActivity {
         disease_et=findViewById(R.id.addrecA_disease_edtTxt);
         medicine_et=findViewById(R.id.addrecA_med_edtTxt);
         medicine_lv=findViewById(R.id.addrecA_med_listVw);
+        save_btn = findViewById(R.id.save_record);
+
+        //String lineS = docName_et.toString() + " : " + phone_et.toString() + " : " + specialist_et.toString() + " : " + disease_et.toString() + " : " + medicine_et.toString() + " : " + medicine_lv.toString();
+        photo_imgVw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                imageChooser();
+            }
+        });
+
+        save_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveData();
+            }
+        });
 
 
 
+    }
 
-
-
+    private void saveData(){
+        Toast.makeText(this, "data", Toast.LENGTH_LONG).show();
     }
 
     private void imageChooser() {
@@ -79,64 +98,6 @@ public class AddRecord extends AppCompatActivity {
                     // do your operation from here....
 
 
-                    if (Build.VERSION.SDK_INT < 19) {
-                        originalUri= data.getData();
-                    } else {
-                        originalUri= data.getData();
-                        final int takeFlags = data.getFlags()
-                                & (Intent.FLAG_GRANT_READ_URI_PERMISSION
-                                | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-
-                        try {
-                            AddRecord.this.getContentResolver().takePersistableUriPermission(originalUri, takeFlags);
-                        }
-                        catch (SecurityException e){
-                            e.printStackTrace();
-                        }
-                    }
-                    Bitmap selectedImageBitmap = null;
-
-
-
-                    try {
-                        selectedImageBitmap
-                                = MediaStore.Images.Media.getBitmap(
-                                AddRecord.this.getContentResolver(),
-                                originalUri);
-                        photo_imgVw.setImageBitmap(selectedImageBitmap);
-
-                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-                        // Code for showing progressDialog while uploading
-                        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                                .setPhotoUri(originalUri)
-                                .build();
-
-                        user.updateProfile(profileUpdates)
-                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isSuccessful()) {
-                                            Log.d(TAG, "User profile updated.");
-                                            Toast.makeText(AddRecord.this, "Profile successfully updated", Toast.LENGTH_LONG).show();
-
-                                        }
-                                    }
-                                });
-
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-
-
-
-
-
-
-
-/*
 
 
 
@@ -175,9 +136,10 @@ public class AddRecord extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
-                    }*/
+                    }
                 }
             });
+
 
 
 

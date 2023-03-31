@@ -23,13 +23,13 @@ SecondActivity extends AppCompatActivity {
         if (user == null) {
             //User is Logged in
             // Intent is used to switch from one activity to another.
-            Intent i = new Intent(SecondActivity.this, AddHealthInfo.class);
+            Intent i = new Intent(SecondActivity.this, LoginActivity.class);
             startActivity(i); // invoke the SecondActivity.
             finish(); // the current activity will get finished.
         }else{
             //No User is Logged in
           //  getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment3()).commit();
-            Intent i = new Intent(SecondActivity.this, AddHealthInfo.class);
+            Intent i = new Intent(SecondActivity.this, HomeActivity.class);
             startActivity(i); // invoke the SecondActivity.
             finish();
         }

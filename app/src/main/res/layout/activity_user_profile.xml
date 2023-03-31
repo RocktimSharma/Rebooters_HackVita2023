@@ -38,6 +38,19 @@
                     android:src="@drawable/female"
                     app:civ_border_color="#FF000000"
                     app:civ_border_width="2dp" />
+
+                <Button
+                    android:id="@+id/logout_btn"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="230dp"
+                    android:background="@null"
+                    android:backgroundTint="@android:color/white"
+                    android:drawableLeft="@drawable/icon_logout_24"
+                    android:elevation="2dp"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:text="Sign Out"
+                    android:textColor="#FF0000" />
             </RelativeLayout>
 
             <androidx.gridlayout.widget.GridLayout
@@ -77,7 +90,7 @@
                         android:textColor="@color/black" />
 
                     <TextView
-                        android:id="@+id/textView25"
+                        android:id="@+id/bg"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -114,7 +127,7 @@
                         android:textColor="@color/black" />
 
                     <TextView
-                        android:id="@+id/textView26"
+                        android:id="@+id/bp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -152,12 +165,13 @@
 
                     <TextView
 
+                        android:id="@+id/sgr"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="sans-serif-condensed-medium"
-                        android:gravity="bottom|right"
 
+                        android:gravity="bottom|right"
                         android:text="Low"
                         android:textColor="@color/black" />
                 </LinearLayout>
@@ -188,12 +202,13 @@
 
                     <TextView
 
+                        android:id="@+id/vac"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
                         android:layout_weight="1"
-                        android:fontFamily="sans-serif-condensed-medium"
 
+                        android:fontFamily="sans-serif-condensed-medium"
                         android:gravity="bottom|right"
                         android:text="Yes"
                         android:textColor="@color/black" />
@@ -226,11 +241,12 @@
 
                     <TextView
 
+                        android:id="@+id/ht"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:fontFamily="sans-serif-condensed-medium"
 
+                        android:fontFamily="sans-serif-condensed-medium"
                         android:gravity="bottom|right"
                         android:text="5ft 5in"
                         android:textColor="@color/black" />
@@ -262,36 +278,19 @@
 
                     <TextView
 
+                        android:id="@+id/wgt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="sans-serif-condensed-medium"
-                        android:gravity="bottom|right"
 
+                        android:gravity="bottom|right"
                         android:text="60 kg"
                         android:textColor="@color/black" />
                 </LinearLayout>
 
 
             </androidx.gridlayout.widget.GridLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@id/usrPr_gl1"
-                android:orientation="vertical">
-
-                <Button
-                    android:id="@+id/button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@null"
-                    android:backgroundTint="@android:color/white"
-                    android:drawableLeft="@drawable/icon_logout_24"
-                    android:fontFamily="sans-serif-condensed-medium"
-                    android:text="Sign Out"
-                    android:textColor="#FF0000" />
-            </LinearLayout>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
