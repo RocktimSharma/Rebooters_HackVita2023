@@ -72,7 +72,7 @@ public class AddHealthInfo extends AppCompatActivity {
         //EditText ed=fragment2.getView().findViewById(R.id.frag2_age_edTxt);
 
 
-        EditText age_edTxt = fragment2.getView().findViewById(R.id.frag2_age_edTxt);
+        EditText age_edTxt = fragment2.getView().findViewById(R.id.frag2_dob_edTxt);
         EditText height_ft_edTxt = fragment2.getView().findViewById(R.id.frag2_height_ft_edTxt);
         EditText height_in_edTxt = fragment2.getView().findViewById(R.id.frag2_height_inc_edTxt);
         EditText weight_edTxt = fragment2.getView().findViewById(R.id.frag2_weight_edTxt);

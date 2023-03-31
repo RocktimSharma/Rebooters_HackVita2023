@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="20dp"
     android:fillViewport="true"
+    android:paddingLeft="20dp"
+    android:paddingTop="20dp"
+    android:paddingRight="20dp"
     tools:context=".Fragments.Fragment2">
 
 
@@ -55,13 +57,16 @@
                     android:layout_marginTop="20dp"
                     android:fontFamily="sans-serif-condensed"
                     android:paddingBottom="2dp"
-                    android:text="Age"
+                    android:text="Date Of Birth"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
+
+
+
                 <EditText
-                    android:id="@+id/frag2_age_edTxt"
+                    android:id="@+id/frag2_dob_edTxt"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="5dp"
@@ -80,8 +85,8 @@
                     android:layout_marginTop="5dp"
                     android:fontFamily="sans-serif-condensed"
                     android:paddingBottom="2dp"
-                    android:textColor="@color/black"
                     android:text="Height"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -149,8 +154,8 @@
                     android:layout_marginTop="5dp"
                     android:fontFamily="sans-serif-condensed"
                     android:paddingBottom="2dp"
-                    android:textColor="@color/black"
                     android:text="Weight"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -188,11 +193,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:textColor="@color/black"
                     android:fontFamily="sans-serif-condensed"
-                    android:textStyle="bold"
+                    android:text="Blood Group"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
-                    android:text="Blood Group" />
+                    android:textStyle="bold" />
 
                 <!--<com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -222,14 +227,13 @@
                     android:id="@+id/textView14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-condensed"
-                    android:layout_marginTop="5dp"
                     android:text="Blood Presure"
-                    android:textSize="16sp"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                     />
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <RadioGroup
                     android:id="@+id/frg2_bp_radiogp"
@@ -242,8 +246,8 @@
                         android:id="@+id/frag2_bp_low_radio"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-condensed"
                         android:layout_weight="1"
+                        android:fontFamily="sans-serif-condensed"
                         android:text="Low" />
 
                     <RadioButton
@@ -270,12 +274,12 @@
                     android:id="@+id/textView16"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
                     android:layout_marginTop="5dp"
+                    android:fontFamily="sans-serif-condensed"
                     android:text="sugar"
-                    android:textSize="16sp"
                     android:textColor="@color/black"
-                    android:textStyle="bold"/>
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <RadioGroup
                     android:id="@+id/frg2_sugar_radiogp"
@@ -318,8 +322,8 @@
                     android:layout_marginTop="5dp"
                     android:fontFamily="sans-serif-condensed"
                     android:text="Are you vacinated ?"
-                    android:textSize="16sp"
                     android:textColor="@color/black"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <RadioGroup
@@ -345,6 +349,8 @@
                         android:layout_weight="1"
                         android:checked="true"
                         android:fontFamily="sans-serif-condensed"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="30dp"
                         android:text="No" />
                 </RadioGroup>
             </LinearLayout>
@@ -367,7 +373,6 @@
 
 
     </ScrollView>
-
 
 
 </RelativeLayout>

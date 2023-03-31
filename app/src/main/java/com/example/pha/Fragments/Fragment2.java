@@ -1,10 +1,15 @@
 package com.example.pha.Fragments;
 
+
+
+import android.app.DatePickerDialog;
+import android.icu.util.Calendar;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
 import android.text.TextUtils;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,14 +17,18 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
+import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.pha.AddHealthInfo;
+import com.example.pha.MainActivity;
 import com.example.pha.R;
+import com.example.pha.SecondActivity;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -29,6 +38,9 @@ import org.jetbrains.annotations.NotNull;
  * create an instance of this fragment.
  */
 public class Fragment2 extends Fragment {
+
+
+
 /*
     String[] items = {"A+","A-","B+","B-","AB","O+"};
     AutoCompleteTextView auto_c_txt;
@@ -44,10 +56,16 @@ public class Fragment2 extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private EditText age_edTxt, height_ft_edTxt, height_in_edTxt, weight_edTxt;
+    private EditText dob_edTxt, height_ft_edTxt, height_in_edTxt, weight_edTxt;
     private RadioButton bp_high_edTxt, bp_low_edTxt, sgr_yes_edTxt, sgr_no_edTxt, vac_yes_edTxt, vac_no_edTxt;
+
+    int year;
+    int month;
+    int day;
+
     private ImageButton back_imBtn;
     private Button next_Btn;
+    Calendar calendar;
     public Fragment2() {
         // Required empty public constructor
     }
@@ -113,6 +131,32 @@ public class Fragment2 extends Fragment {
                 ((AddHealthInfo)getActivity()).replaceFragments(1);
             }
         });
+
+
+        dob_edTxt=view.findViewById(R.id.frag2_dob_edTxt);
+        calendar= Calendar.getInstance();
+        dob_edTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                year=calendar.get(calendar.YEAR);
+                month=calendar.get(calendar.MONTH);
+                day=calendar.get(calendar.DAY_OF_MONTH);
+                DatePickerDialog datePickerDialog=new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        calendar.set(Calendar.YEAR, year);
+                        calendar.set(Calendar.MONTH, month);
+                        String date_selected = dayOfMonth + "/" + (month + 1) + "/"
+                                + year;
+                       dob_edTxt.setText(date_selected);
+
+                    }
+                },year,month,day);
+                datePickerDialog.show();
+
+            }
+        });
+
 /*
 
         //int age = Integer.parseInt(age_edTxt.getText().toString());
