@@ -3,20 +3,26 @@ package com.example.pha;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.pha.Fragments.Fragment1;
 import com.example.pha.Fragments.Fragment2;
 import com.example.pha.Fragments.Fragment3;
 import com.example.pha.adapters.ViewPagerAdapter;
 import com.example.pha.model.HealthInfo;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import org.checkerframework.checker.nullness.qual.NonNull;
 
 public class AddHealthInfo extends AppCompatActivity {
     private ViewPager viewPager;
@@ -69,11 +75,7 @@ public class AddHealthInfo extends AppCompatActivity {
 
 
     public void getDataFromFragments(){
-
-
-
-
-       /* databaseReference
+        databaseReference
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(healthInfo).
                 addOnCompleteListener(new OnCompleteListener<Void>() {
 
@@ -83,18 +85,15 @@ public class AddHealthInfo extends AppCompatActivity {
                         if(task.isSuccessful()){
                             Log.i("Test Ah 1", "Successful");
                             Toast.makeText(AddHealthInfo.this,"Data inserted Successful",Toast.LENGTH_LONG).show();
+                            startActivity(new Intent(AddHealthInfo.this, HomeActivity.class));
 
                         }else{
                             Log.i("Test Ah 2", "Failed");
                             Toast.makeText(AddHealthInfo.this,"Data inserted failed" + task.getException(),Toast.LENGTH_LONG).show();
 
                         }
-
-
                     }
-                });*/
-
-
+                });
     }
 
     public void setGender(String g){
