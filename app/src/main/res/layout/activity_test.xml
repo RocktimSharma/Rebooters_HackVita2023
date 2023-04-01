@@ -11,10 +11,16 @@
     <SearchView
         android:id="@+id/test_activity_searchVw"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
     </SearchView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/testA_rcVw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/test_activity_searchVw"
+        android:padding="20dp"
+        tools:listitem="@layout/symptom_rc_item" />
+
 </RelativeLayout>
