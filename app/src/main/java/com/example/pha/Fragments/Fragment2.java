@@ -104,7 +104,7 @@ public class Fragment2 extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_2, container, false);
 
-      /*  age_edTxt = view.findViewById(R.id.frag2_age_edTxt);
+       dob_edTxt= view.findViewById(R.id.frag2_dob_edTxt);
         height_ft_edTxt = view.findViewById(R.id.frag2_height_ft_edTxt);
         height_in_edTxt = view.findViewById(R.id.frag2_height_inc_edTxt);
         weight_edTxt = view.findViewById(R.id.frag2_weight_edTxt);
@@ -113,7 +113,7 @@ public class Fragment2 extends Fragment {
         sgr_yes_edTxt = view.findViewById(R.id.frag2_sgr_yes_radio);
         sgr_no_edTxt = view.findViewById(R.id.frag2_sgr_no_radio);
         vac_yes_edTxt = view.findViewById(R.id.frag2_vac_yes_radio);
-        vac_no_edTxt = view.findViewById(R.id.frag2_vac_no_radio);*/
+        vac_no_edTxt = view.findViewById(R.id.frag2_vac_no_radio);
 
         next_Btn=view.findViewById(R.id.frag2_next_btn);
         back_imBtn=view.findViewById(R.id.frag2_back_imBtn);
@@ -121,6 +121,7 @@ public class Fragment2 extends Fragment {
         next_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ((AddHealthInfo)getActivity()).replaceFragments(3);
                 ((AddHealthInfo)getActivity()).replaceFragments(3);
             }
         });
